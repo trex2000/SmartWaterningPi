@@ -9,9 +9,9 @@ GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # the input pin initial value
 # pull up resistor keeps the input HIGH
 
 if GPIO.input(16) == 0:  # when the pin is false (LOW state) the button is pushed
-    GPIO.output(26, GPIO.HIGH)  # turns on the two pins, the pins are made to provide power of 3.3volts
+    GPIO.output(26, GPIO.HIGH)  # turns on an LED
 else:
-    GPIO.output(26, GPIO.LOW)  # turns off the two pins,the pins are no longer supplying any power
+    GPIO.output(26, GPIO.LOW)  # turns off the LED
 if GPIO.input(20) == 0:
     GPIO.output(19, GPIO.HIGH)
 else:
