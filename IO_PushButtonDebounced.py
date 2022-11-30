@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-T_DEBOUNCE_INIT_VALUE = 500  # debounce counter initial value
+T_DEBOUNCE_INIT_VALUE = 50  # debounce counter initial value
 T_SLEEP = 0.01  # sleep time
 CNT_ELAPSED_VAL = 0  # counter was running and reached 0
 CNT_STOPPED_VAL = 0xFFFF  # counter was stopped and is not running
@@ -45,14 +45,9 @@ def stop_counter(counter):
     return counter
 
 
-setup()  # initialising the input and output ports
-
-debounce_counter1 = T_DEBOUNCE_INIT_VALUE
-debounce_counter2 = T_DEBOUNCE_INIT_VALUE
-led1_state = False  # LED1 is off
-led2_state = False  # LED2 is off
-
-while True:
+def manage_but1():
+    global debounce_counter1
+    global led1_state
     if GPIO.input(PUSH_BUT1) == 0:  # button is pressed
         if is_counter_running(debounce_counter1):  # if the button is pressed for 5s and
             debounce_counter1 = debounce_counter1 - 1
@@ -68,4 +63,15 @@ while True:
     else:
         debounce_counter1 = start_counter(debounce_counter1,
                                           T_DEBOUNCE_INIT_VALUE)  # if you depress the button the counter will be again 500
+
+
+setup()  # initialising the input and output ports
+
+debounce_counter1 = T_DEBOUNCE_INIT_VALUE
+debounce_counter2 = T_DEBOUNCE_INIT_VALUE
+led1_state = False  # LED1 is off
+led2_state = False  # LED2 is off
+
+while True:
+    manage_but1()  # toggles led on button press
     sleep(T_SLEEP)
