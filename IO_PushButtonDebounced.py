@@ -24,14 +24,12 @@ def setup():
 # pull up resistor: connect between a pin and VCC, with an open switch connected between pin and GND
 # pull up resistor keeps the input HIGH
 
-def is_counter_running(counter):
+def counter_running(counter):
     if (counter != CNT_ELAPSED_VAL) and (counter != CNT_STOPPED_VAL):
         return True
-    else:
-        return False
 
 
-def is_counter_elapsed(counter):
+def counter_elapsed(counter):
     return counter == CNT_ELAPSED_VAL
 
 
@@ -49,9 +47,9 @@ def manage_but1():
     global debounce_counter1
     global led1_state
     if GPIO.input(PUSH_BUT1) == 0:  # button is pressed
-        if is_counter_running(debounce_counter1):  # if the button is pressed for 5s and
+        if counter_running(debounce_counter1):  # if the button is pressed for 5s and
             debounce_counter1 = debounce_counter1 - 1
-        elif is_counter_elapsed(debounce_counter1):
+        elif counter_elapsed(debounce_counter1):
             debounce_counter1 = stop_counter(debounce_counter1)
             print('counter 5s elapsed')
             if led1_state == False:
@@ -61,8 +59,28 @@ def manage_but1():
                 GPIO.output(LED1, GPIO.LOW)
                 led1_state = False
     else:
-        debounce_counter1 = start_counter(debounce_counter1,
-                                          T_DEBOUNCE_INIT_VALUE)  # if you depress the button the counter will be again 500
+        debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  # if you depress the button the
+        # counter will be again 500
+
+
+def manage_but2():
+    global debounce_counter2
+    global led2_state
+    if GPIO.input(PUSH_BUT2) == 0:  # button is pressed
+        if counter_running(debounce_counter2):  # if the button is pressed for 5s and
+            debounce_counter2 = debounce_counter2 - 1
+        elif counter_elapsed(debounce_counter2):
+            debounce_counter2 = stop_counter(debounce_counter2)
+            print('counter 5s elapsed')
+            if led2_state == False:
+                GPIO.output(LED2, GPIO.HIGH)
+                led2_state = True
+            elif led2_state == True:
+                GPIO.output(LED2, GPIO.LOW)
+                led2_state = False
+    else:
+        debounce_counter2 = start_counter(debounce_counter2, T_DEBOUNCE_INIT_VALUE)  # if you depress the button the
+        # counter will be again 500
 
 
 setup()  # initialising the input and output ports
@@ -74,4 +92,5 @@ led2_state = False  # LED2 is off
 
 while True:
     manage_but1()  # toggles led on button press
+    manage_but2()
     sleep(T_SLEEP)
