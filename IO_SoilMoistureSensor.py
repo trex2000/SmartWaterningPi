@@ -6,12 +6,14 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 
 def values():
-    if chan.voltage > 2.400:
-        print('The soil is dry!')
-    elif 1.700 < chan.voltage < 2.400:
-        print('The soil is moist')
-    elif chan.voltage < 1.700:
-        print('The soil is too wet')
+    x = 100 * 8000 / int(chan.value)
+    percentage = int(x)
+    if chan.value > 18400:
+        print(f'The soil is {percentage}% dry.')
+    elif 8000 < chan.value < 18400:
+        print(f'The soil is {percentage}% moist.')
+    elif chan.value < 8000:
+        print(f'The soil is {percentage}% wet. ')
 
 
 i2c = busio.I2C(board.SCL, board.SDA)  # creating the I2C bus
@@ -21,4 +23,4 @@ chan = AnalogIn(ads, ADS.P0)  # creating single-ended input on channel 0
 
 while True:
     values()
-    time.sleep(0.5)
+    time.sleep(2)
