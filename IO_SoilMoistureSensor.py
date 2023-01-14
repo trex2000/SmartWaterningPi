@@ -24,11 +24,8 @@ def insert_soil_moisture_table(device_name, date, raw_value, percentage, classif
                                   "VALUES (%s, %s, %s, %s, %s)"
             soil_moisture_records = (device_name, date, raw_value, percentage, classification)
             with connection.cursor() as cursor:
-                print('cursor')
                 cursor.execute(soil_moisture_query, soil_moisture_records)
-                print('executed')
                 connection.commit()
-                print('commited')
     except Error as e:
         print(e)
     finally:
@@ -38,13 +35,17 @@ def insert_soil_moisture_table(device_name, date, raw_value, percentage, classif
 
 try:
     while True:
-        record_id = 3
         device_name = 'ADS 1X15'
         date = datetime.datetime.now()
-        raw_value = 3  # int(chan.value())
-        percentage = 3  # 100 * 8000 / raw_value
-        classification = 'class'
-        insert_soil_moisture_table(device_name, date, raw_value, percentage, classification)
+        raw_value = chan.value
+        percentage = int(100 * 8000 / int(raw_value))
+        if chan.value > 18400:
+            classification = 'dry'
+        elif 8000 < chan.value < 18400:
+            classification = 'moist'
+        elif chan.value < 8000:
+            classification = 'wet'
+        insert_soil_moisture_table(device_name, date, raw_value, format(percentage, 'd') + '%', classification)
         time.sleep(5)
 except(IOError, TypeError) as e:
     print(e)
