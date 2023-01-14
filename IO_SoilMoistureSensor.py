@@ -12,7 +12,7 @@ ads = ADS.ADS1015(i2c)  # creating the ADC object using the I2C bus
 chan = AnalogIn(ads, ADS.P0)  # creating single-ended input on channel 0
 
 
-def insert_soil_moisture_table(device, date, raw_value, percentage, classification):
+def insert_soil_moisture_table(device_name, date, raw_value, percentage, classification):
     try:
         with connect(
                 host="localhost",
@@ -20,11 +20,15 @@ def insert_soil_moisture_table(device, date, raw_value, percentage, classificati
                 password=getpass("Enter password: "),
                 database='smartwatering'
         ) as connection:
-            soil_moisture_query = "INSERT INTO SOIL_MOISTURE (DEVICE, DATE, RAW_VALUE, PERCENTAGE, CLASSIFICATION)"\
+            soil_moisture_query = "INSERT INTO SOIL_MOISTURE (DEVICE_NAME, DATE, RAW_VALUE, PERCENTAGE, CLASSIFICATION)" \
                                   "VALUES (%s, %s, %s, %s, %s)"
-            soil_moisture_records = (device, date, raw_value, percentage, classification)
+            soil_moisture_records = (device_name, date, raw_value, percentage, classification)
             with connection.cursor() as cursor:
-                cursor.executemany(soil_moisture_query, soil_moisture_records)
+                print('cursor')
+                cursor.execute(soil_moisture_query, soil_moisture_records)
+                print('executed')
+                connection.commit()
+                print('commited')
     except Error as e:
         print(e)
     finally:
@@ -34,13 +38,13 @@ def insert_soil_moisture_table(device, date, raw_value, percentage, classificati
 
 try:
     while True:
-        device = 'ADS 1X15'
-        now = datetime.datetime.now()
-        date = now.strftime('%Y-%m-%d %H:%M:%S')
-        raw_value = chan.value
-        percentage = 100 * 8000 / int(chan.value)
+        record_id = 3
+        device_name = 'ADS 1X15'
+        date = datetime.datetime.now()
+        raw_value = 3  # int(chan.value())
+        percentage = 3  # 100 * 8000 / raw_value
         classification = 'class'
-        insert_soil_moisture_table((device,), date, raw_value, percentage, (classification,))
+        insert_soil_moisture_table(device_name, date, raw_value, percentage, classification)
         time.sleep(5)
 except(IOError, TypeError) as e:
     print(e)
