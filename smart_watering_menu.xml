@@ -1,0 +1,44 @@
+<smart_watering>
+  <main_menu title='~SMART WATERING~'>
+    1. DHT22 logging
+    2. Moisture logging
+    3. Automatic watering
+    4. Manual watering
+    5. Power off 
+  </main_menu>
+  <dht22_menu title='~DHT22 logging~'>
+    1. Logging
+    2. Current temperature
+    3. Current humidity
+    4. Back
+    <dht22_logging>
+      1. ON
+      2. OFF
+      3. Current state
+      4. Back
+    </dht22_logging>
+  </dht22_menu>
+  <moisture_menu title='~Moisture logging~'>
+    1. Logging
+    2. Current value
+    3. Back
+    <moisture_logging>
+      1. ON
+      2. OFF
+      3. Current State
+      4. Back
+    </moisture_logging>
+  </moisture_menu>
+  <automatic_menu title='~Automatic watering~'>
+    1. Auto. watering ON
+    2. Auto. watering OFF
+    3. Current state
+    4. Back
+  </automatic_menu>
+  <manual_menu title='~Manual watering~'>
+    1. Man. watering ON
+    2. Man. watering OFF
+    3. Current state
+    4. Back
+  </manual_menu>
+</smart_watering>
