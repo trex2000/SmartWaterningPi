@@ -1,44 +1,44 @@
 <smart_watering>
   <main_menu title='~SMART WATERING~'>
-    1. DHT22 logging
-    2. Moisture logging
-    3. Automatic watering
-    4. Manual watering
-    5. Power off 
+    <option callable="false">1. DHT22 logging</option>
+    <option callable="false">2. Moisture logging</option>
+    <option callable="false">3. Automatic watering</option>
+    <option callable="false">4. Manual watering</option>
+    <option callable="true">5. Power off </option>
   </main_menu>
-  <dht22_menu title='~DHT22 logging~'>
-    1. Logging
-    2. Current temperature
-    3. Current humidity
-    4. Back
-    <dht22_logging>
-      1. ON
-      2. OFF
-      3. Current state
-      4. Back
-    </dht22_logging>
-  </dht22_menu>
-  <moisture_menu title='~Moisture logging~'>
-    1. Logging
-    2. Current value
-    3. Back
-    <moisture_logging>
-      1. ON
-      2. OFF
-      3. Current State
-      4. Back
-    </moisture_logging>
-  </moisture_menu>
-  <automatic_menu title='~Automatic watering~'>
-    1. Auto. watering ON
-    2. Auto. watering OFF
-    3. Current state
-    4. Back
-  </automatic_menu>
-  <manual_menu title='~Manual watering~'>
-    1. Man. watering ON
-    2. Man. watering OFF
-    3. Current state
-    4. Back
-  </manual_menu>
+  <menu title='~DHT22 logging~'>
+    <option callable="false">1. Logging</option>
+    <option callable="true">2. Current temperature</option>
+    <option callable="true">3. Current humidity</option>
+    <option callable="false">4. Back</option>
+    <sub_menu name="logging">
+      <option callable="true">1. ON</option>
+      <option callable="true">2. OFF</option>
+      <option callable="true">3. Current state</option>
+      <option callable="false">4. Back</option>
+    </sub_menu>
+  </menu>
+  <menu title='~Moisture logging~'>
+    <option callable="false">1. Logging</option>
+    <option callable="true">2. Current value</option>>
+    <option callable="false">3. Back</option>>
+    <sub_menu name="logging">
+      <option callable="true">1. ON</option>
+      <option callable="true">2. OFF</option>
+      <option callable="true">3. Current State</option>
+      <option callable="false">4. Back</option>
+    </sub_menu>
+  </menu>
+  <menu title='~Automatic watering~'>
+    <option callable="true">1. Auto. watering ON </option>
+    <option callable="true">2. Auto. watering OFF</option>
+    <option callable="true">3. Current state</option>>
+    <option callable="false">4. Back</option>
+  </menu>
+  <menu title='~Manual watering~'>
+    <option callable="true">1. Man. watering ON</option>>
+    <option callable="true">2. Man. watering OFF</option>
+    <option callable="true">3. Current state</option>>
+    <option callable="false">4. Back</option>>
+  </menu>
 </smart_watering>
