@@ -76,12 +76,11 @@ def main_menu():
             for i in range(0, numberOfElement):
                 if i == selectedItem:  # the selected item should be highlighted
                     draw.text((PADDING, PADDING + (i * 10)), root[0][i].text, font=highlighted, fill=255)
-                    oled.image(image)
-                    oled.show()
                 else:
                     draw.text((PADDING, PADDING + (i * 10)), root[0][i].text, font=font, fill=255)
-                    oled.image(image)
-                    oled.show()
+            #finally show the image that was composed
+            oled.image(image)
+            oled.show()
         if GPIO.input(PUSH_BUT) == 0:  # button is pressed
             if counter_running(debounce_counter):  # if the button is pressed for 5s and
                 debounce_counter = debounce_counter - 1
