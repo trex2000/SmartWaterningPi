@@ -30,6 +30,7 @@ def main_menu():
         if redrawNeeded:
             redrawNeeded = False
             oled.fill(0)
+            oled.image(image)
             oled.show()  # OLED is cleared
             for i in range(0, numberOfElement):
                 if i == selectedItem:  # the selected item should be highlighted
@@ -44,7 +45,7 @@ def main_menu():
         if userInput == 'a':
             if selectedItem < numberOfElement:  # if the button is pressed (and the selected item is less than the number of elements)
                 # then the selected item should be the next one
-                selectedItem = selectedItem + 1  #
+                selectedItem = selectedItem + 1
                 redrawNeeded = True  # redraw is needed, otherwise the menu overwrites itself over and over again
             else:
                 selectedItem = 0  # if the selected item is the last one, and you press the button than the next selected item should be the first element
