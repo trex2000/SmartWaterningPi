@@ -66,18 +66,3 @@ async def manage_but2():
         debounce_counter2 = start_counter(debounce_counter2, T_DEBOUNCE_INIT_VALUE)  # if you depress the button the
         # counter will be again 500
 
-
-async def button1_pressed():
-    while True:
-        await manage_but1()
-        await asyncio.sleep(1)
-
-
-async def button2_pressed():
-    while True:
-        await manage_but2()
-        await asyncio.sleep(1)
-
-
-
-

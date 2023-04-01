@@ -33,8 +33,8 @@ async def main_menu():
     selectedItem = 0  # first item selected in the menu
     redrawNeeded = True  # the oled display will be redrawn
     buttonPressed = False  # the button is not pressed
+
     while True:
-        await asyncio.sleep(1)
         if redrawNeeded:
             redrawNeeded = False
             oled.fill(0)
@@ -50,7 +50,7 @@ async def main_menu():
             oled.image(image)
             oled.show()
             # show image
-        if button1_pressed():
+        if await manage_but1():
             buttonPressed = True
         if buttonPressed == True:
             if selectedItem < numberOfElement:  # if the button is pressed (and the selected item is less than the number of elements)
@@ -66,6 +66,25 @@ async def main_menu():
 
 
 setup()
+
+
+async def button1_pressed():
+    while True:
+        await manage_but1()
+        await asyncio.sleep(1)
+
+
+async def button2_pressed():
+    while True:
+        await manage_but2()
+        await asyncio.sleep(1)
+
+
+async def manage_main_menu():
+    while True:
+        await main_menu()
+        await asyncio.sleep(1)
+
 
 loop = asyncio.get_event_loop()
 try:
