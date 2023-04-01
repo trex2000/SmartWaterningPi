@@ -12,6 +12,12 @@ debounce_counter1 = T_DEBOUNCE_INIT_VALUE
 debounce_counter2 = T_DEBOUNCE_INIT_VALUE
 
 
+#define 2 events for the button debounced state
+button1PressedEvent = asyncio.Event()
+button2PressedEvent = asyncio.Event()
+
+
+
 def setup_button():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)  # using the GPIO pin numbers instead of 'standard' pin numbers
@@ -41,28 +47,33 @@ def stop_counter(counter):
     return counter
 
 
-async def manage_but1():
-    global debounce_counter1
+def manage_but1():
+    global debounce_counter1, button1PressedEvent
     if GPIO.input(PUSH_BUT1) == 0:  # button is pressed
-        if counter_running(debounce_counter1):  # if the button is pressed for 5s and
+        if counter_running(debounce_counter1):  # if the button is pressed for 50ms a
             debounce_counter1 = debounce_counter1 - 1
         elif counter_elapsed(debounce_counter1):
             debounce_counter1 = stop_counter(debounce_counter1)
-            return True
+            button1PressedEvent.set()
     else:
         debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  # if you depress the button the
-        # counter will be again 500
+        # counter will be again 50ms        
 
 
-async def manage_but2():
-    global debounce_counter2
+def manage_but2():
+    global debounce_counter2, button2Pressed
     if GPIO.input(PUSH_BUT2) == 0:  # button is pressed
         if counter_running(debounce_counter2):  # if the button is pressed for 5s and
             debounce_counter2 = debounce_counter2 - 1
         elif counter_elapsed(debounce_counter2):
             debounce_counter2 = stop_counter(debounce_counter2)
-            return True
+            button2PressedEvent.set()
     else:
         debounce_counter2 = start_counter(debounce_counter2, T_DEBOUNCE_INIT_VALUE)  # if you depress the button the
-        # counter will be again 500
+        # counter will be again 500        
+
+
+
+
+
 

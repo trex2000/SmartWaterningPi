@@ -6,6 +6,7 @@ import adafruit_ssd1306  # import the SSD1306 module.
 from PIL import Image, ImageDraw, ImageFont
 import time
 import xml.etree.ElementTree as ET
+import getch
 from Async_IO_loop import *
 
 
@@ -20,21 +21,21 @@ oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=OLED_ADDRESS)
 tree = ET.parse('smart_watering_menu.xml')  # parsed the xml file
 root = tree.getroot()
 
+font = ImageFont.truetype('DejaVuSerif.ttf', 10)  # the menu is displayed on oled with the base font
+highlighted = ImageFont.truetype('DejaVuSerif-Bold.ttf', 11)  # selected item is highlighted in the displayed menu
+
+menu = 0  # index of the menu
+selectedItem = 0  # first item selected in the menu
+redrawNeeded = True  # the oled display will be redrawn
+
 
 def setup():
     setup_button()
 
 
-async def main_menu():
-    font = ImageFont.truetype('DejaVuSerif.ttf', 10)  # the menu is displayed on oled with the base font
-    highlighted = ImageFont.truetype('DejaVuSerif-Bold.ttf', 11)  # selected item is highlighted in the displayed menu
-    menu = 0  # index of the menu
-    numberOfElement = len(root[menu])  # number of elements in the main_menu
-    selectedItem = 0  # first item selected in the menu
-    redrawNeeded = True  # the oled display will be redrawn
-    buttonPressed = False  # the button is not pressed
-
-    while True:
+def main_menu():   
+        global font, highlighted, menu, selectedItem, button1PressedEvent, redrawNeeded
+        numberOfElement = len(root[menu])  # number of elements in the main_menu
         if redrawNeeded:
             redrawNeeded = False
             oled.fill(0)
@@ -50,47 +51,42 @@ async def main_menu():
             oled.image(image)
             oled.show()
             # show image
-        if await manage_but1():
-            buttonPressed = True
-        if buttonPressed == True:
+        if button1PressedEvent.is_set():    #check if event was fired        
             if selectedItem < numberOfElement:  # if the button is pressed (and the selected item is less than the number of elements)
                 # then the selected item should be the next one
                 selectedItem = selectedItem + 1
                 redrawNeeded = True  # redraw is needed, otherwise the menu overwrites itself over and over again
-                buttonPressed = False
             else:
                 selectedItem = 0  # if the selected item is the last one, and you press the button than the next selected item should be the first element
                 redrawNeeded = True
-                buttonPressed = False
+        button1PressedEvent.clear()
 
+        
+async def async_task_manageButton1():
+    while True:
+        manage_but1()
+        await asyncio.sleep(T_SLEEP)
+
+
+async def async_task_manageButton2():
+    while True:
+        manage_but2()
+        await asyncio.sleep(T_SLEEP)
+
+
+async def async_task_manage_main_menu():
+    while True:
+        main_menu()
+        await asyncio.sleep(T_SLEEP)
 
 
 setup()
 
-
-async def button1_pressed():
-    while True:
-        await manage_but1()
-        await asyncio.sleep(1)
-
-
-async def button2_pressed():
-    while True:
-        await manage_but2()
-        await asyncio.sleep(1)
-
-
-async def manage_main_menu():
-    while True:
-        await main_menu()
-        await asyncio.sleep(1)
-
-
 loop = asyncio.get_event_loop()
 try:
-    asyncio.ensure_future(main_menu())
-    asyncio.ensure_future(button1_pressed())
-    asyncio.ensure_future(button2_pressed())
+    asyncio.ensure_future(async_task_manageButton1())
+    asyncio.ensure_future(async_task_manageButton2())
+    asyncio.ensure_future(async_task_manage_main_menu())
     loop.run_forever()
 except KeyboardInterrupt:
     pass
