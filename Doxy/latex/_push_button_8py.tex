@@ -1,0 +1,47 @@
+\hypertarget{_push_button_8py}{}\doxysection{Push\+Button.\+py File Reference}
+\label{_push_button_8py}\index{PushButton.py@{PushButton.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_push_button}{Push\+Button}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_push_button_a021950af2e60cfdc83029af2ad2706c3}{Push\+Button.\+setup\+\_\+button}} ()
+\begin{DoxyCompactList}\small\item\em Setup the library to use board numbering. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_ad4c31d4ae9cb17da86358761f8b61818}{Push\+Button.\+counter\+\_\+running}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter is running. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_ab167c7d3864f39aa6fec5a70b3d6eec7}{Push\+Button.\+counter\+\_\+elapsed}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter is elapsed. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_aacb8a239528f44ee93742af13e91fe05}{Push\+Button.\+start\+\_\+counter}} (counter, init\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Starts counter. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_ac5342b66954a137c2d46ca410e354e86}{Push\+Button.\+stop\+\_\+counter}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter stops. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_a578fe5ee24b1f3c69d3e89c5c9c6dd92}{Push\+Button.\+manage\+\_\+but1}} ()
+\begin{DoxyCompactList}\small\item\em Debounces push button 1. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}{Push\+Button.\+manage\+\_\+but2}} ()
+\begin{DoxyCompactList}\small\item\em Debounces push button 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespace_push_button_ab110a500aa8e6f578f55fab03566d941}{Push\+Button.\+T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}} = 10
+\begin{DoxyCompactList}\small\item\em Debounce counter initial value. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespace_push_button_ac0f5e7d570bcf68fbae433a16d0c5a17}{Push\+Button.\+T\+\_\+\+SLEEP}} = 0.\+01
+\begin{DoxyCompactList}\small\item\em Sleep time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_ae9691eb0bfd729df9445eae4eb5fba84}{Push\+Button.\+CNT\+\_\+\+ELAPSED\+\_\+\+VAL}} = 0
+\begin{DoxyCompactList}\small\item\em Counter was running and reached 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_a5b8fda219a0e989526c9940c21cac04f}{Push\+Button.\+CNT\+\_\+\+STOPPED\+\_\+\+VAL}} = 0x\+FFFF
+\begin{DoxyCompactList}\small\item\em Counter was stopped and is not running. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_ada75d95e86e71068f1cf432e18d2ba60}{Push\+Button.\+PUSH\+\_\+\+BUT1}} = 16
+\begin{DoxyCompactList}\small\item\em Push button 1 pin number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_a8e7ec98d113d98ccf37eb7ec20b454f9}{Push\+Button.\+PUSH\+\_\+\+BUT2}} = 20
+\begin{DoxyCompactList}\small\item\em Push button 2 pin number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_afe2a5115883a08a1d917798db5d23f03}{Push\+Button.\+debounce\+\_\+counter1}} = T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE
+\begin{DoxyCompactList}\small\item\em Initial values is assigned for the first push button\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_a74cbb224f63bd3dc0ce083c6d5b66bbb}{Push\+Button.\+debounce\+\_\+counter2}} = T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE
+\begin{DoxyCompactList}\small\item\em Initial values is assigned for the second push button\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+asyncio \mbox{\hyperlink{namespace_push_button_ad45511f80f36c6cafed730dede041475}{Push\+Button.\+button1\+Pressed\+Event}} = asyncio.\+Event()
+\begin{DoxyCompactList}\small\item\em Defined an event for the first push button\textquotesingle{}s debounced state. \end{DoxyCompactList}\item 
+asyncio \mbox{\hyperlink{namespace_push_button_a236d75f8bf79f2be863fab6928288143}{Push\+Button.\+button2\+Pressed\+Event}} = asyncio.\+Event()
+\begin{DoxyCompactList}\small\item\em Defined an event for the second push button\textquotesingle{}s debounced state. \end{DoxyCompactList}\end{DoxyCompactItemize}

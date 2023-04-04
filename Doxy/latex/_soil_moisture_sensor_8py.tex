@@ -1,0 +1,43 @@
+\hypertarget{_soil_moisture_sensor_8py}{}\doxysection{Soil\+Moisture\+Sensor.\+py File Reference}
+\label{_soil_moisture_sensor_8py}\index{SoilMoistureSensor.py@{SoilMoistureSensor.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_soil_moisture_sensor}{Soil\+Moisture\+Sensor}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_soil_moisture_sensor_ae8a15cc17b20d68090536eb7cf7de9bf}{Soil\+Moisture\+Sensor.\+insert\+\_\+soil\+\_\+moisture\+\_\+table}} (device\+\_\+name, date, raw\+\_\+value, percentage, classification)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+busio \mbox{\hyperlink{namespace_soil_moisture_sensor_a244fd4e52b50dbaad4c24b1fdab9d5d6}{Soil\+Moisture\+Sensor.\+i2c}} = busio.\+I2C(board.\+SCL, board.\+SDA)
+\item 
+ADS \mbox{\hyperlink{namespace_soil_moisture_sensor_a2b9b80a189b8718be6634b9b6b117047}{Soil\+Moisture\+Sensor.\+ads}} = ADS.\+ADS1015(i2c)
+\item 
+Analog\+In \mbox{\hyperlink{namespace_soil_moisture_sensor_a3c2d05cc2eda9ebfde20ed205653da25}{Soil\+Moisture\+Sensor.\+chan}} = Analog\+In(ads, ADS.\+P0)
+\item 
+str \mbox{\hyperlink{namespace_soil_moisture_sensor_a91578c0ab5e87797c062e531daeb544d}{Soil\+Moisture\+Sensor.\+HOSTNAME}} = \textquotesingle{}localhost\textquotesingle{}
+\item 
+input \mbox{\hyperlink{namespace_soil_moisture_sensor_aa5120909e3423e5250f4753708f61645}{Soil\+Moisture\+Sensor.\+USERNAME}} = input(\textquotesingle{}Enter your username\+: \textquotesingle{})
+\item 
+getpass \mbox{\hyperlink{namespace_soil_moisture_sensor_a4415bf2e0e149ed870f18e1de11f6ace}{Soil\+Moisture\+Sensor.\+PASSWORD}} = getpass(\textquotesingle{}Enter your password\+: \textquotesingle{})
+\item 
+str \mbox{\hyperlink{namespace_soil_moisture_sensor_a63f1abfde6cd39ab21fd2e7d0bd8abd4}{Soil\+Moisture\+Sensor.\+DATABASE}} = \textquotesingle{}smartwatering\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespace_soil_moisture_sensor_ad4dbd3618f1565529552c9fa9ba8fbf1}{Soil\+Moisture\+Sensor.\+try}} \+:
+\item 
+str \mbox{\hyperlink{namespace_soil_moisture_sensor_ac05783934cb6a3a721d9dafd4dcc3e3b}{Soil\+Moisture\+Sensor.\+device\+\_\+name}} = \textquotesingle{}ADS 1X15\textquotesingle{}
+\item 
+datetime \mbox{\hyperlink{namespace_soil_moisture_sensor_a7cc14960ca46bb17ee7624e5567ec3b1}{Soil\+Moisture\+Sensor.\+now}} = datetime.\+datetime.\+now()
+\item 
+datetime \mbox{\hyperlink{namespace_soil_moisture_sensor_a824eba5e107a634e5f297cde7af0305e}{Soil\+Moisture\+Sensor.\+date}} = now.\+strftime(\textquotesingle{}\%Y-\/\%m-\/\%d \%H\+:\%M\+:\%S\textquotesingle{})
+\item 
+Analog\+In \mbox{\hyperlink{namespace_soil_moisture_sensor_ad9e5c304b6c6d4b443d132a36cb009d1}{Soil\+Moisture\+Sensor.\+raw\+\_\+value}} = chan.\+value
+\item 
+int \mbox{\hyperlink{namespace_soil_moisture_sensor_a30fef63455d8960eadd12336f79c9681}{Soil\+Moisture\+Sensor.\+percentage}} = int(100 $\ast$ 8000 / int(raw\+\_\+value))
+\item 
+str \mbox{\hyperlink{namespace_soil_moisture_sensor_a302dbda5694e19febb2f036364f513ae}{Soil\+Moisture\+Sensor.\+classification}} = \textquotesingle{}dry\textquotesingle{}
+\end{DoxyCompactItemize}

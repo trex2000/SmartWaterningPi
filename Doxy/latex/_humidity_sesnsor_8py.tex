@@ -1,0 +1,39 @@
+\hypertarget{_humidity_sesnsor_8py}{}\doxysection{Humidity\+Sesnsor.\+py File Reference}
+\label{_humidity_sesnsor_8py}\index{HumiditySesnsor.py@{HumiditySesnsor.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_humidity_sesnsor}{Humidity\+Sesnsor}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_humidity_sesnsor_ac1192f379eacfc24efb255da7c7bf6c3}{Humidity\+Sesnsor.\+insert\+\_\+humidity\+\_\+table}} (device\+\_\+name, date, temperature\+\_\+f, temperature\+\_\+c, humidity)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+adafruit\+\_\+dht \mbox{\hyperlink{namespace_humidity_sesnsor_a638868366fb9107ae02ac40c11ca48a5}{Humidity\+Sesnsor.\+dht\+Device}} = adafruit\+\_\+dht.\+DHT22(board.\+D4)
+\item 
+str \mbox{\hyperlink{namespace_humidity_sesnsor_a1aa1ed7fed439a8f9651e6a244bcb580}{Humidity\+Sesnsor.\+HOSTNAME}} = \textquotesingle{}localhost\textquotesingle{}
+\item 
+input \mbox{\hyperlink{namespace_humidity_sesnsor_a770684203e716f1ae41c558084fd3b73}{Humidity\+Sesnsor.\+USERNAME}} = input(\textquotesingle{}Enter your username\+: \textquotesingle{})
+\item 
+getpass \mbox{\hyperlink{namespace_humidity_sesnsor_a51750be36ccfc74e3405dc87da8606be}{Humidity\+Sesnsor.\+PASSWORD}} = getpass(\textquotesingle{}Enter your password\+: \textquotesingle{})
+\item 
+str \mbox{\hyperlink{namespace_humidity_sesnsor_a0a8aefa0c8c3640790e7ea320a9a7d97}{Humidity\+Sesnsor.\+DATABASE}} = \textquotesingle{}smartwatering\textquotesingle{}
+\item 
+\mbox{\hyperlink{namespace_humidity_sesnsor_ade7ea34527cc1e04c44ee4d5d9a8933a}{Humidity\+Sesnsor.\+try}} \+:
+\item 
+str \mbox{\hyperlink{namespace_humidity_sesnsor_aff3bba26e2622cbb1dd7091d02981856}{Humidity\+Sesnsor.\+device\+\_\+name}} = \textquotesingle{}DHT22\textquotesingle{}
+\item 
+datetime \mbox{\hyperlink{namespace_humidity_sesnsor_ae58b1814d88dbb0d99a45b47942eaa88}{Humidity\+Sesnsor.\+now}} = datetime.\+datetime.\+now()
+\item 
+datetime \mbox{\hyperlink{namespace_humidity_sesnsor_a8de6788ec427f0ac01253c81fa11a5e7}{Humidity\+Sesnsor.\+date}} = now.\+strftime(\textquotesingle{}\%Y-\/\%m-\/\%d \%H\+:\%M\+:\%S\textquotesingle{})
+\item 
+adafruit\+\_\+dht \mbox{\hyperlink{namespace_humidity_sesnsor_afbbff1c5be55bc320ea306736dae6e8a}{Humidity\+Sesnsor.\+temperature\+\_\+c}} = dht\+Device.\+temperature
+\item 
+adafruit\+\_\+dht \mbox{\hyperlink{namespace_humidity_sesnsor_aa5a5c9f488a866ea0480c8315aea3fa5}{Humidity\+Sesnsor.\+temperature\+\_\+f}} = temperature\+\_\+c $\ast$ (9 / 5) + 32
+\item 
+int \mbox{\hyperlink{namespace_humidity_sesnsor_ade7cb637fa88bb2d0c3830ba037241c9}{Humidity\+Sesnsor.\+humidity}} = int(dht\+Device.\+humidity)
+\end{DoxyCompactItemize}
