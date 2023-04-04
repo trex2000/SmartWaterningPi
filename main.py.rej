@@ -1,0 +1,4 @@
+diff a/main.py b/main.py	(rejected hunks)
+@@ -0,0 +1 @@
++print("Smart Watering System started")
+\ No newline at end of file
