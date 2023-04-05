@@ -1,9 +1,13 @@
 """! @mainpage Smart Watering System
 
-@brief rovid leirasa a projektnek 
+@brief This system uses sensors to measure the actual moisture of the soil and digital temperature and humidity sensor to measure 
+the surrounding air.
+The system also has an OLED display which displays the menu of the system. You can check out the current moisture of the soil, temperature,
+humidity and also turn on or off the automatic watering based on the soil moisture data. 
+The data from the sensors are logged into an SQL database.
 """
 
-"""! @package MenuDisplay.py
+"""! @file MenuDisplay.py
 
 @brief rovid leiras a modulerol
 """
@@ -48,51 +52,71 @@ redrawNeeded = True
 
 
 def setup():
+    """!Ghaters the modules setups
+    """
+
     setup_button()
 
 
-def main_menu():   
+def main_menu():
+        """!Navigating throught the menu
+        
+        The connected OLED displays the menu with the currently active menu point which is highlighted.
+        Push button 1 shall be used to navigate through the menu anf push button 2 to select an option which will navigate to another menu or
+        runs a function. 
+        """   
+        # Global values 
         global font, highlighted, menu, selectedItem, button1PressedEvent, redrawNeeded
-        numberOfElement = len(root[menu])  # number of elements in the main_menu
+        ## Number of elements in the main_menu
+        numberOfElement = len(root[menu])
+
         if redrawNeeded:
             redrawNeeded = False
             oled.fill(0)
             image = Image.new('1', (WIDTH, HEIGHT))
             draw = ImageDraw.Draw(image)
-            oled.show()
-            # OLED is cleared
+            oled.show()  # OLED display is cleared
             for i in range(0, numberOfElement):
-                if i == selectedItem:  # the selected item should be highlighted
+                if i == selectedItem:  # The selected item is highlighted
                     draw.text((PADDING, PADDING + (i * 10)), root[menu][i].text, font=highlighted, fill=255)
                 else:
                     draw.text((PADDING, PADDING + (i * 10)), root[menu][i].text, font=font, fill=255)
             oled.image(image)
-            oled.show()
-            # show image
-        if button1PressedEvent.is_set():    #check if event was fired        
-            if selectedItem < numberOfElement:  # if the button is pressed (and the selected item is less than the number of elements)
-                # then the selected item should be the next one
+            oled.show()  # Shows the menu with the acvtive menu point highlighted
+        if button1PressedEvent.is_set():  # Checks if the event was fired        
+            if selectedItem < numberOfElement:  # If the button is pressed (and the selected item is less than the number of elements)
+                #then the selected item should be the next one
                 selectedItem = selectedItem + 1
-                redrawNeeded = True  # redraw is needed, otherwise the menu overwrites itself over and over again
+                redrawNeeded = True  # Redraw is needed, otherwise the menu will overwrite itself over and over again
             else:
-                selectedItem = 0  # if the selected item is the last one, and you press the button than the next selected item should be the first element
+                selectedItem = 0  # If the selected item is the last one, and you press push button 1 again the next selected item will be 
+                #the first element
                 redrawNeeded = True
-        button1PressedEvent.clear()
+        button1PressedEvent.clear()  # The event is marked as “not set” via this function.
 
         
 async def async_task_manageButton1():
+    """!Define a coroutine for push button 1 that takes in a future.
+    """    
+
     while True:
         manage_but1()
         await asyncio.sleep(T_SLEEP)
 
 
 async def async_task_manageButton2():
+    """!Define a coroutine for push button 2 that takes in a future.
+    """
+
     while True:
         manage_but2()
         await asyncio.sleep(T_SLEEP)
 
 
 async def async_task_manage_main_menu():
+    """!Define a coroutine for main menu that takes in a future.
+    """
+
     while True:
         main_menu()
         await asyncio.sleep(T_SLEEP)
@@ -100,7 +124,10 @@ async def async_task_manage_main_menu():
 
 setup()
 
+
+## Define event loop
 loop = asyncio.get_event_loop()
+# Subsequently starts asyncio based event loop and have it run indefinitely until the program comes to an end
 try:
     asyncio.ensure_future(async_task_manageButton1())
     asyncio.ensure_future(async_task_manageButton2())

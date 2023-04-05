@@ -4,15 +4,15 @@
 \begin{DoxyCompactItemize}
 \item 
 def \mbox{\hyperlink{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}{setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Ghaters the modules setups. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a1b57debb3b0891413fa7f0fac48c6c06}{main\+\_\+menu}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Navigating throught the menu. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a5a0a108b16c79a2e4dd33474671e1cc0}{async\+\_\+task\+\_\+manage\+Button1}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Define a coroutine for push button 1 that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a9d480eb4f08f0f19371fb886ebadc3c6}{async\+\_\+task\+\_\+manage\+Button2}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Define a coroutine for push button 2 that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a690d1b6c4c4a8380cc11c76826fe0252}{async\+\_\+task\+\_\+manage\+\_\+main\+\_\+menu}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Define a coroutine for main menu that takes in a future. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,7 +43,7 @@ int \mbox{\hyperlink{namespace_menu_display_a45f6326b7d484c6d6624e0d2d0a14a8c}{s
 bool \mbox{\hyperlink{namespace_menu_display_a607882fe9c465a69d0dfbdc82dbafe4d}{redraw\+Needed}} = True
 \begin{DoxyCompactList}\small\item\em The oled display will be redrawn if it\textquotesingle{}s True. \end{DoxyCompactList}\item 
 asyncio \mbox{\hyperlink{namespace_menu_display_ab7fc35a5419f5499802c315e25985a23}{loop}} = asyncio.\+get\+\_\+event\+\_\+loop()
-\item 
+\begin{DoxyCompactList}\small\item\em Define event loop. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_menu_display_a5a5df30b204a3b1ff95242b228db9034}{try}} \+:
 \item 
 \mbox{\hyperlink{namespace_menu_display_a356daa1168b77be7023b235879d9eebc}{finally}} \+:
@@ -57,11 +57,19 @@ asyncio \mbox{\hyperlink{namespace_menu_display_ab7fc35a5419f5499802c315e25985a2
 \doxysubsubsection{\texorpdfstring{async\_task\_manage\_main\_menu()}{async\_task\_manage\_main\_menu()}}
 {\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+manage\+\_\+main\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Define a coroutine for main menu that takes in a future. 
+
 \mbox{\Hypertarget{namespace_menu_display_a5a0a108b16c79a2e4dd33474671e1cc0}\label{namespace_menu_display_a5a0a108b16c79a2e4dd33474671e1cc0}} 
 \index{MenuDisplay@{MenuDisplay}!async\_task\_manageButton1@{async\_task\_manageButton1}}
 \index{async\_task\_manageButton1@{async\_task\_manageButton1}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{async\_task\_manageButton1()}{async\_task\_manageButton1()}}
 {\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+manage\+Button1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for push button 1 that takes in a future. 
 
 \mbox{\Hypertarget{namespace_menu_display_a9d480eb4f08f0f19371fb886ebadc3c6}\label{namespace_menu_display_a9d480eb4f08f0f19371fb886ebadc3c6}} 
 \index{MenuDisplay@{MenuDisplay}!async\_task\_manageButton2@{async\_task\_manageButton2}}
@@ -69,17 +77,33 @@ asyncio \mbox{\hyperlink{namespace_menu_display_ab7fc35a5419f5499802c315e25985a2
 \doxysubsubsection{\texorpdfstring{async\_task\_manageButton2()}{async\_task\_manageButton2()}}
 {\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+manage\+Button2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Define a coroutine for push button 2 that takes in a future. 
+
 \mbox{\Hypertarget{namespace_menu_display_a1b57debb3b0891413fa7f0fac48c6c06}\label{namespace_menu_display_a1b57debb3b0891413fa7f0fac48c6c06}} 
 \index{MenuDisplay@{MenuDisplay}!main\_menu@{main\_menu}}
 \index{main\_menu@{main\_menu}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{main\_menu()}{main\_menu()}}
 {\footnotesize\ttfamily def Menu\+Display.\+main\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}\label{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}} 
+
+
+Navigating throught the menu. 
+
+\begin{DoxyVerb}    The connected OLED displays the menu with the currently active menu point which is highlighted.
+    Push button 1 shall be used to navigate through the menu anf push button 2 to select an option which will navigate to another menu or
+    runs a function. 
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}\label{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}} 
 \index{MenuDisplay@{MenuDisplay}!setup@{setup}}
 \index{setup@{setup}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
 {\footnotesize\ttfamily def Menu\+Display.\+setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ghaters the modules setups. 
 
 
 
@@ -135,6 +159,10 @@ Created I2C instance.
 \index{loop@{loop}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{loop}{loop}}
 {\footnotesize\ttfamily asyncio Menu\+Display.\+loop = asyncio.\+get\+\_\+event\+\_\+loop()}
+
+
+
+Define event loop. 
 
 \mbox{\Hypertarget{namespace_menu_display_a9a8bf832841d5ed10da42469c7713a37}\label{namespace_menu_display_a9a8bf832841d5ed10da42469c7713a37}} 
 \index{MenuDisplay@{MenuDisplay}!menu@{menu}}
