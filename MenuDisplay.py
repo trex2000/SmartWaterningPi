@@ -44,7 +44,7 @@ font = ImageFont.truetype('DejaVuSerif.ttf', 10)
 ## Selected item is highlighted on the menu
 highlighted = ImageFont.truetype('DejaVuSerif-Bold.ttf', 11)
 ## Menu index
-menu = 0
+menuPage = 0
 ## Selected item on the menu
 selectedItem = 0 
 ## The oled display will be redrawn if it's True 
@@ -66,9 +66,9 @@ def main_menu():
         runs a function. 
         """   
         # Global values 
-        global font, highlighted, menu, selectedItem, button1PressedEvent, redrawNeeded
+        global font, highlighted, menuPage, selectedItem, button1PressedEvent, redrawNeeded
         ## Number of elements in the main_menu
-        numberOfElement = len(root[menu])
+        numberOfElement = len(root[menuPage])
 
         if redrawNeeded:
             redrawNeeded = False
@@ -78,9 +78,9 @@ def main_menu():
             oled.show()  # OLED display is cleared
             for i in range(0, numberOfElement):
                 if i == selectedItem:  # The selected item is highlighted
-                    draw.text((PADDING, PADDING + (i * 10)), root[menu][i].text, font=highlighted, fill=255)
+                    draw.text((PADDING, PADDING + (i * 10)), root[menuPage][i].text, font=highlighted, fill=255)
                 else:
-                    draw.text((PADDING, PADDING + (i * 10)), root[menu][i].text, font=font, fill=255)
+                    draw.text((PADDING, PADDING + (i * 10)), root[menuPage][i].text, font=font, fill=255)
             oled.image(image)
             oled.show()  # Shows the menu with the acvtive menu point highlighted
         if button1PressedEvent.is_set():  # Checks if the event was fired        
@@ -90,9 +90,14 @@ def main_menu():
                 redrawNeeded = True  # Redraw is needed, otherwise the menu will overwrite itself over and over again
             else:
                 selectedItem = 0  # If the selected item is the last one, and you press push button 1 again the next selected item will be 
-                #the first element
+                #the first element.
                 redrawNeeded = True
         button1PressedEvent.clear()  # The event is marked as “not set” via this function.
+        if button2PressedEvent.is_set():  # Checks if the event was fired.
+            menuPage = selectedItem + 1  # The OLED should display the selected items menu. 
+            selectedItem = 0  # The first item on the new menu list should behighlighted.
+            redrawNeeded = True
+        button2PressedEvent.clear()  # The event is marked as “not set” via this function.
 
         
 async def async_task_manageButton1():
@@ -136,5 +141,4 @@ try:
 except KeyboardInterrupt:
     pass
 finally:
-    print("Closing Loop")
     loop.close()
