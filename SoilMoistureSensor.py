@@ -105,8 +105,6 @@ def insert_soil_moisture_table(device_name, date, raw_value, converted_percentag
         image = Image.new('1', (WIDTH, HEIGHT))  
         draw = ImageDraw.Draw(image)
         oled.show()
-        draw.text((PADDING, PADDING + 10), 'Current moisture\n of the soil:', font= ImageFont.truetype('DejaVuSerif.ttf', 13), fill=255)
-        draw.text((PADDING + 75, PADDING + 28), converted_percentage, font= ImageFont.truetype('DejaVuSerif.ttf', 13), fill=255)
+        draw.text((PADDING, PADDING + 10), f'Current moisture\n of the soil: {converted_percentage}', font= ImageFont.truetype('DejaVuSerif.ttf', 13), fill=255)
         oled.image(image)
         oled.show()
-        
