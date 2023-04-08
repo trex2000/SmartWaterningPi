@@ -7,12 +7,6 @@ humidity and also turn on or off the automatic watering based on the soil moistu
 The data from the sensors are logged into an SQL database.
 """
 
-"""! @file MenuDisplay.py
-
-@brief rovid leiras a modulerol
-"""
-
-
 # Imports
 import asyncio
 import board
@@ -22,6 +16,7 @@ import adafruit_ssd1306
 from PIL import Image, ImageDraw, ImageFont
 import xml.etree.ElementTree as ET
 from PushButton import *
+from SoilMoistureSensor import *
 
 
 # Global Constants of the OLED display
@@ -49,6 +44,8 @@ menuPage = 0
 selectedItem = 0 
 ## The oled display will be redrawn if it's True 
 redrawNeeded = True 
+## Longer sleep time.
+T_LONG_SLEEP = 3600
 
 
 def setup():
@@ -65,11 +62,12 @@ def main_menu():
         Push button 1 shall be used to navigate through the menu anf push button 2 to select an option which will navigate to another menu or
         runs a function. 
         """   
+        
         # Global values 
         global font, highlighted, menuPage, selectedItem, button1PressedEvent, redrawNeeded
         ## Number of elements in the main_menu
-        numberOfElement = len(root[menuPage])
-
+        numberOfElement = len(root[menuPage])  # Number of elements in the menu.
+        indexOfElements = int(numberOfElement) - 1  # Number of indexes of the elemnt in the menu.
         if redrawNeeded:
             redrawNeeded = False
             oled.fill(0)
@@ -84,7 +82,7 @@ def main_menu():
             oled.image(image)
             oled.show()  # Shows the menu with the acvtive menu point highlighted
         if button1PressedEvent.is_set():  # Checks if the event was fired        
-            if selectedItem < numberOfElement:  # If the button is pressed (and the selected item is less than the number of elements)
+            if selectedItem < indexOfElements:  # If the button is pressed (and the selected item is less than the number of elements)
                 #then the selected item should be the next one
                 selectedItem = selectedItem + 1
                 redrawNeeded = True  # Redraw is needed, otherwise the menu will overwrite itself over and over again
@@ -115,6 +113,24 @@ async def async_task_manageButton2():
 
     while True:
         manage_but2()
+        await asyncio.sleep(T_SLEEP)
+
+
+async def async_task_insert_SoilMoistureRecords():
+    """!Define a coroutine for inserting records that takes in a future.
+    """
+
+    while True:
+        insert_SoilMoistureRecords()
+        await asyncio.sleep(T_LONG_SLEEP)
+
+
+async def async_task_get_SoilMoistureRecord():
+    """!Define a coroutine for getting the last record that takes in a future.
+    """
+
+    while True:
+        get_SoilMoistureRecord()
         await asyncio.sleep(T_SLEEP)
 
 

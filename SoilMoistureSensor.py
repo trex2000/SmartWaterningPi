@@ -1,4 +1,4 @@
-"""!Records the soils moisture and displays on OLED. 
+"""!Records the soils moisture. 
 """
 
 # Imports
@@ -10,9 +10,6 @@ import busio  # I2C bus.
 from adafruit_ads1x15.analog_in import AnalogIn
 from getpass import getpass  
 from mysql.connector import connect, Error 
-import RPi.GPIO as GPIO
-import adafruit_ssd1306 
-from PIL import Image, ImageDraw, ImageFont
 
 
 # Global Constants of the soil moisture sensor
@@ -25,9 +22,9 @@ chan = AnalogIn(ads, ADS.P0)
 ## Setting hostname for PhpMyAdmin connection
 HOSTNAME = 'localhost'
 ## Input PhpMyAdmin username to connect.
-USERNAME = input('Enter your username: ')
+USERNAME = 'szidonia'
 ## Input PhpMyAdmin password to connect.
-PASSWORD = getpass('Enter your password: ')
+PASSWORD = 'bomba98'
 ## Setting the database on PhpMyAdmin.
 DATABASE = 'smartwatering'
 ## The soil moisture sensor's name.
@@ -49,32 +46,19 @@ elif 8000 < chan.value < 18400:
     classification = 'moist'
 elif chan.value < 8000:
     classification = 'wet'
-
-# Global Constants of the OLED display
-## The I2C address of the display.
-OLED_ADDRESS = 0x3c
-## Widht size of the display.
-WIDTH = 128
-## Height size of the display.
-HEIGHT = 64
-## 5 bit space created inside the border.
-PADDING = 1
-## Created I2C instance.
-i2c = busio.I2C(board.SCL, board.SDA)
-oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=OLED_ADDRESS)
-## The oled display will be redrawn if it's True. 
-redrawNeeded_soilmoisturefile = True
+## Current value of the soils moisture.
+current_soilMoisture = 0
 
 
 #Functions
-def insert_soil_moisture_table(device_name, date, raw_value, converted_percentage, classification):
+def insert_SoilMoistureRecords(device_name, date, raw_value, converted_percentage, classification):
     """!Inserts data to PhpMyAdmin tables.
 
-    After succesful connection inserts the requested data to PhpMyAdmin's SOIL_MOISTURE table.
-    Displays on OLED the current moisture of the soil. 
+    After succesful connection inserts the requested data to PhpMyAdmin's 'SOIL_MOISTURE' table.
     """
+    
     #Global constants 
-    global HOSTNAME, USERNAME, PASSWORD, DATABASE, redrawNeeded_soilmoisturefile, PADDING
+    global HOSTNAME, USERNAME, PASSWORD, DATABASE
     try:
         # Establishing a connection.
         with connect(                  
@@ -98,13 +82,37 @@ def insert_soil_moisture_table(device_name, date, raw_value, converted_percentag
     finally:
         cursor.close()  # Closing the cursor and resets all results.
         connection.close()  # The connection object return to the connection pool.
-    if redrawNeeded_soilmoisturefile:
-        # Displays the current moisture value in percentage on OLED 
-        redrawNeeded_soilmoisturefile = False
-        oled.fill(0)
-        image = Image.new('1', (WIDTH, HEIGHT))  
-        draw = ImageDraw.Draw(image)
-        oled.show()
-        draw.text((PADDING, PADDING + 10), f'Current moisture\n of the soil: {converted_percentage}', font= ImageFont.truetype('DejaVuSerif.ttf', 13), fill=255)
-        oled.image(image)
-        oled.show()
+
+
+def get_SoilMoistureRecord():
+    """!Gets the last soil moisture record from SQL database.
+
+    After succeful connection gets the last record of the soils moisture from PhpMyAdmin 'SOIL_MOISTURE' table. 
+    This record will be defined as a variable.  
+    """
+
+    #Global constants 
+    global HOSTNAME, USERNAME, PASSWORD, DATABASE, current_soilMoisture
+    try:
+        # Establishing a connection.
+        with connect(                  
+                host=HOSTNAME,           
+                user=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
+        ) as connection:
+            # Selecting the last record from the table by passing the standrad MySQL querys to execute.
+            soil_moisture_record = "SELECT PERCENTAGE FROM SOIL_MOISTURE ORDER BY RECORD_ID DESC LIMIT 1"
+            with connection.cursor() as cursor:
+                cursor.execute(soil_moisture_record)
+                last_record = cursor.fetchone()
+                converted_lastrecord = ''.join(last_record)  # Converting the last record into str else it will be tuple
+                current_soilMoisture = converted_lastrecord
+                # The MySQL connector doesn't autocommit transactions without commit.
+                connection.commit()
+    except Error as e:
+        print(e)
+    finally:
+        cursor.close()  # Closing the cursor and resets all results.
+        connection.close()  # The connection object return to the connection pool.
+    
