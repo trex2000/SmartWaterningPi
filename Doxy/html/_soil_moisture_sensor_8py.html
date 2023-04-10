@@ -80,43 +80,76 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespace_soil_moisture_sensor"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html">SoilMoistureSensor</a></td></tr>
+<tr class="memdesc:namespace_soil_moisture_sensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records the soils moisture and displays on OLED. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae8a15cc17b20d68090536eb7cf7de9bf"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ae8a15cc17b20d68090536eb7cf7de9bf">SoilMoistureSensor.insert_soil_moisture_table</a> (device_name, date, raw_value, percentage, classification)</td></tr>
-<tr class="separator:ae8a15cc17b20d68090536eb7cf7de9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb3ddadcf1585a45dd99f655974f3410"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#acb3ddadcf1585a45dd99f655974f3410">SoilMoistureSensor.insert_soil_moisture_table</a> (device_name, date, raw_value, converted_percentage, classification)</td></tr>
+<tr class="memdesc:acb3ddadcf1585a45dd99f655974f3410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts data to PhpMyAdmin tables.  <br /></td></tr>
+<tr class="separator:acb3ddadcf1585a45dd99f655974f3410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a244fd4e52b50dbaad4c24b1fdab9d5d6"><td class="memItemLeft" align="right" valign="top">busio&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a244fd4e52b50dbaad4c24b1fdab9d5d6">SoilMoistureSensor.i2c</a> = busio.I2C(board.SCL, board.SDA)</td></tr>
-<tr class="separator:a244fd4e52b50dbaad4c24b1fdab9d5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade3e039c76f1500283ac7fb139107f7f"><td class="memItemLeft" align="right" valign="top">busio&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ade3e039c76f1500283ac7fb139107f7f">SoilMoistureSensor.i2c</a> = busio.I2C(board.SCL, board.SDA)</td></tr>
+<tr class="memdesc:ade3e039c76f1500283ac7fb139107f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creating the I2C bus.  <br /></td></tr>
+<tr class="separator:ade3e039c76f1500283ac7fb139107f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b9b80a189b8718be6634b9b6b117047"><td class="memItemLeft" align="right" valign="top">ADS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a2b9b80a189b8718be6634b9b6b117047">SoilMoistureSensor.ads</a> = ADS.ADS1015(i2c)</td></tr>
+<tr class="memdesc:a2b9b80a189b8718be6634b9b6b117047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creating the ADC object using the I2C bus.  <br /></td></tr>
 <tr class="separator:a2b9b80a189b8718be6634b9b6b117047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c2d05cc2eda9ebfde20ed205653da25"><td class="memItemLeft" align="right" valign="top">AnalogIn&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a3c2d05cc2eda9ebfde20ed205653da25">SoilMoistureSensor.chan</a> = AnalogIn(ads, ADS.P0)</td></tr>
+<tr class="memdesc:a3c2d05cc2eda9ebfde20ed205653da25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creating single-ended input on channel 0.  <br /></td></tr>
 <tr class="separator:a3c2d05cc2eda9ebfde20ed205653da25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91578c0ab5e87797c062e531daeb544d"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a91578c0ab5e87797c062e531daeb544d">SoilMoistureSensor.HOSTNAME</a> = 'localhost'</td></tr>
+<tr class="memdesc:a91578c0ab5e87797c062e531daeb544d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting hostname for PhpMyAdmin connection.  <br /></td></tr>
 <tr class="separator:a91578c0ab5e87797c062e531daeb544d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5120909e3423e5250f4753708f61645"><td class="memItemLeft" align="right" valign="top">input&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#aa5120909e3423e5250f4753708f61645">SoilMoistureSensor.USERNAME</a> = input('Enter your username: ')</td></tr>
+<tr class="memdesc:aa5120909e3423e5250f4753708f61645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input PhpMyAdmin username to connect.  <br /></td></tr>
 <tr class="separator:aa5120909e3423e5250f4753708f61645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4415bf2e0e149ed870f18e1de11f6ace"><td class="memItemLeft" align="right" valign="top">getpass&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a4415bf2e0e149ed870f18e1de11f6ace">SoilMoistureSensor.PASSWORD</a> = getpass('Enter your password: ')</td></tr>
+<tr class="memdesc:a4415bf2e0e149ed870f18e1de11f6ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input PhpMyAdmin password to connect.  <br /></td></tr>
 <tr class="separator:a4415bf2e0e149ed870f18e1de11f6ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63f1abfde6cd39ab21fd2e7d0bd8abd4"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a63f1abfde6cd39ab21fd2e7d0bd8abd4">SoilMoistureSensor.DATABASE</a> = 'smartwatering'</td></tr>
+<tr class="memdesc:a63f1abfde6cd39ab21fd2e7d0bd8abd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the database on PhpMyAdmin.  <br /></td></tr>
 <tr class="separator:a63f1abfde6cd39ab21fd2e7d0bd8abd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4dbd3618f1565529552c9fa9ba8fbf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ad4dbd3618f1565529552c9fa9ba8fbf1">SoilMoistureSensor.try</a> :</td></tr>
-<tr class="separator:ad4dbd3618f1565529552c9fa9ba8fbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05783934cb6a3a721d9dafd4dcc3e3b"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ac05783934cb6a3a721d9dafd4dcc3e3b">SoilMoistureSensor.device_name</a> = 'ADS 1X15'</td></tr>
+<tr class="memdesc:ac05783934cb6a3a721d9dafd4dcc3e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The soil moisture sensor's name.  <br /></td></tr>
 <tr class="separator:ac05783934cb6a3a721d9dafd4dcc3e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cc14960ca46bb17ee7624e5567ec3b1"><td class="memItemLeft" align="right" valign="top">datetime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a7cc14960ca46bb17ee7624e5567ec3b1">SoilMoistureSensor.now</a> = datetime.datetime.now()</td></tr>
+<tr class="memdesc:a7cc14960ca46bb17ee7624e5567ec3b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date when the data was recorded.  <br /></td></tr>
 <tr class="separator:a7cc14960ca46bb17ee7624e5567ec3b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a824eba5e107a634e5f297cde7af0305e"><td class="memItemLeft" align="right" valign="top">datetime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a824eba5e107a634e5f297cde7af0305e">SoilMoistureSensor.date</a> = now.strftime('%Y-%m-%d %H:%M:%S')</td></tr>
+<tr class="memdesc:a824eba5e107a634e5f297cde7af0305e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date format year:month:day hour:minute:second.  <br /></td></tr>
 <tr class="separator:a824eba5e107a634e5f297cde7af0305e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9e5c304b6c6d4b443d132a36cb009d1"><td class="memItemLeft" align="right" valign="top">AnalogIn&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ad9e5c304b6c6d4b443d132a36cb009d1">SoilMoistureSensor.raw_value</a> = chan.value</td></tr>
+<tr class="memdesc:ad9e5c304b6c6d4b443d132a36cb009d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw value.  <br /></td></tr>
 <tr class="separator:ad9e5c304b6c6d4b443d132a36cb009d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30fef63455d8960eadd12336f79c9681"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a30fef63455d8960eadd12336f79c9681">SoilMoistureSensor.percentage</a> = int(100 * 8000 / int(raw_value))</td></tr>
+<tr class="memdesc:a30fef63455d8960eadd12336f79c9681"><td class="mdescLeft">&#160;</td><td class="mdescRight">The raw value converted to percentage.  <br /></td></tr>
 <tr class="separator:a30fef63455d8960eadd12336f79c9681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bfb1827c3689fb5b0b28e842531bac6"><td class="memItemLeft" align="right" valign="top">format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a9bfb1827c3689fb5b0b28e842531bac6">SoilMoistureSensor.converted_percentage</a> = format(percentage, 'd') + '%'</td></tr>
+<tr class="memdesc:a9bfb1827c3689fb5b0b28e842531bac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converted the integer into a string with %.  <br /></td></tr>
+<tr class="separator:a9bfb1827c3689fb5b0b28e842531bac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a302dbda5694e19febb2f036364f513ae"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a302dbda5694e19febb2f036364f513ae">SoilMoistureSensor.classification</a> = 'dry'</td></tr>
+<tr class="memdesc:a302dbda5694e19febb2f036364f513ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">The values are classificated.  <br /></td></tr>
 <tr class="separator:a302dbda5694e19febb2f036364f513ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631b84f13c522efed99cc82849eeae56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a631b84f13c522efed99cc82849eeae56">SoilMoistureSensor.OLED_ADDRESS</a> = 0x3c</td></tr>
+<tr class="memdesc:a631b84f13c522efed99cc82849eeae56"><td class="mdescLeft">&#160;</td><td class="mdescRight">The I2C address of the display.  <br /></td></tr>
+<tr class="separator:a631b84f13c522efed99cc82849eeae56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ceb24e9f72abe0a96245b0248307211"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a2ceb24e9f72abe0a96245b0248307211">SoilMoistureSensor.WIDTH</a> = 128</td></tr>
+<tr class="memdesc:a2ceb24e9f72abe0a96245b0248307211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Widht size of the display.  <br /></td></tr>
+<tr class="separator:a2ceb24e9f72abe0a96245b0248307211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84552f613473d41566ce8800ca7e25bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a84552f613473d41566ce8800ca7e25bf">SoilMoistureSensor.HEIGHT</a> = 64</td></tr>
+<tr class="memdesc:a84552f613473d41566ce8800ca7e25bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height size of the display.  <br /></td></tr>
+<tr class="separator:a84552f613473d41566ce8800ca7e25bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a7caf8210d8eb0cc46d85239b9dc11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a81a7caf8210d8eb0cc46d85239b9dc11">SoilMoistureSensor.PADDING</a> = 1</td></tr>
+<tr class="memdesc:a81a7caf8210d8eb0cc46d85239b9dc11"><td class="mdescLeft">&#160;</td><td class="mdescRight">5 bit space created inside the border.  <br /></td></tr>
+<tr class="separator:a81a7caf8210d8eb0cc46d85239b9dc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ef1e68eda2e769b1b5fbf8a193b185"><td class="memItemLeft" align="right" valign="top">adafruit_ssd1306&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#ab3ef1e68eda2e769b1b5fbf8a193b185">SoilMoistureSensor.oled</a> = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=OLED_ADDRESS)</td></tr>
+<tr class="separator:ab3ef1e68eda2e769b1b5fbf8a193b185"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294b030611064a4006945c12a102fdb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_soil_moisture_sensor.html#a294b030611064a4006945c12a102fdb1">SoilMoistureSensor.redrawNeeded_soilmoisturefile</a> = True</td></tr>
+<tr class="memdesc:a294b030611064a4006945c12a102fdb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The oled display will be redrawn if it's True.  <br /></td></tr>
+<tr class="separator:a294b030611064a4006945c12a102fdb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

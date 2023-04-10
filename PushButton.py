@@ -1,8 +1,12 @@
+"""!Two push buttons are debounced.
+    In case the push buttons are pressed for at least 10ms an event is defined.
+"""
+
 # Imports
 import RPi.GPIO as GPIO
 import asyncio
 
-# Global Constants 
+# Global Constants of the push buttons
 ## Debounce counter initial value
 T_DEBOUNCE_INIT_VALUE = 10  
 ## Sleep time

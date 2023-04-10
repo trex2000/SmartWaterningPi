@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['menu_0',['menu',['../namespace_menu_display.html#a9a8bf832841d5ed10da42469c7713a37',1,'MenuDisplay']]]
+  ['menupage_0',['menuPage',['../namespace_menu_display.html#a8c3dc45e0e41d4ec83a50ff6ce7a2e9e',1,'MenuDisplay']]]
 ];

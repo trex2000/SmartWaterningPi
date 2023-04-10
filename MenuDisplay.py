@@ -16,6 +16,7 @@ import adafruit_ssd1306
 from PIL import Image, ImageDraw, ImageFont
 import xml.etree.ElementTree as ET
 from PushButton import *
+from HumiditySesnsor import *
 from SoilMoistureSensor import *
 
 
@@ -73,7 +74,7 @@ def main_menu():
             oled.fill(0)
             image = Image.new('1', (WIDTH, HEIGHT))
             draw = ImageDraw.Draw(image)
-            oled.show()  # OLED display is cleared
+            oled.show()  # OLED display is cleared.
             for i in range(0, numberOfElement):
                 if i == selectedItem:  # The selected item is highlighted
                     draw.text((PADDING, PADDING + (i * 10)), root[menuPage][i].text, font=highlighted, fill=255)
@@ -91,11 +92,17 @@ def main_menu():
                 #the first element.
                 redrawNeeded = True
         button1PressedEvent.clear()  # The event is marked as “not set” via this function.
-        if button2PressedEvent.is_set():  # Checks if the event was fired.
-            menuPage = selectedItem + 1  # The OLED should display the selected items menu. 
-            selectedItem = 0  # The first item on the new menu list should behighlighted.
-            redrawNeeded = True
-        button2PressedEvent.clear()  # The event is marked as “not set” via this function.
+        if button2PressedEvent.is_set():  # Checks if the event was fired 
+            # If the last item is selected with push button 2, the previous menu shall display. 
+            if indexOfElements == selectedItem:
+                selectedItem = menuPage - 1  # The selected item is the one which submenu was opened.
+                menuPage = 0
+                redrawNeeded = True
+            else:  # The OLED should display the selecetd items menu.
+                menuPage = selectedItem + 1 
+                selectedItem = 0    # The first item on the list is selected 
+                redrawNeeded = True
+        button2PressedEvent.clear()  # The event is marked as 'not set' via this function
 
         
 async def async_task_manageButton1():
@@ -113,6 +120,33 @@ async def async_task_manageButton2():
 
     while True:
         manage_but2()
+        await asyncio.sleep(T_SLEEP)
+
+
+async def async_task_insert_HumidityRecords():
+    """!Define a coroutine for inserting humidity records that takes in a future.
+    """
+
+    while True:
+        insert_HumidityRecords(device_name, date, temperature_f, temperature_c, humidity)
+        await asyncio.sleep(T_LONG_SLEEP)
+
+
+async def async_task_get_HumidityRecord():
+    """!Define a coroutine for getting the last humidity record that takes in a future.
+    """
+
+    while True:
+        get_HumidityRecord()
+        await asyncio.sleep(T_SLEEP) 
+
+
+async def async_task_get_TemperatureRecord():
+    """!Define a coroutine for getting the last temperature record that takes in a future.
+    """
+
+    while True:
+        get_TemperatureRecord()
         await asyncio.sleep(T_SLEEP)
 
 
@@ -145,13 +179,17 @@ async def async_task_manage_main_menu():
 
 setup()
 
-
 ## Define event loop
 loop = asyncio.get_event_loop()
 # Subsequently starts asyncio based event loop and have it run indefinitely until the program comes to an end
 try:
     asyncio.ensure_future(async_task_manageButton1())
     asyncio.ensure_future(async_task_manageButton2())
+    asyncio.ensure_future(async_task_insert_HumidityRecords())
+    asyncio.ensure_future(async_task_get_HumidityRecord())
+    asyncio.ensure_future(async_task_get_TemperatureRecord())
+    asyncio.ensure_future(async_task_insert_SoilMoistureRecords())
+    asyncio.ensure_future(async_task_get_SoilMoistureRecord())
     asyncio.ensure_future(async_task_manage_main_menu())
     loop.run_forever()
 except KeyboardInterrupt:

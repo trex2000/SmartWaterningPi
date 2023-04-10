@@ -1,62 +1,142 @@
+"""!Records the humidity and temperature
+"""
+
+# Imports
 import time
 import datetime
 import board
 import adafruit_dht
-from getpass import getpass  # importing the getpass module that prompts the user for a password without echoing
 from mysql.connector import connect, Error  # importing the Python MySQL connector to interact with a PhpMyAdmin database
 
 
-# Initial the dht device, with data pin connected to:
+# Global Constants  
+## Initialise the dht device, with data pin connected to.
 dhtDevice = adafruit_dht.DHT22(board.D4)
-
-
-# settings for PhpMyAdmin connection
+## The DHT sensor measures the data.
+measure_data =dhtDevice.measure()
+## Setting hostname for PhpMyAdmin connection
 HOSTNAME = 'localhost'
-USERNAME = input('Enter your username: ')
-PASSWORD = getpass('Enter your password: ')
+## Input PhpMyAdmin username to connect.
+USERNAME = 'szidonia'
+## Input PhpMyAdmin password to connect.
+PASSWORD = 'bomba98'
+## Setting the database on PhpMyAdmin.
 DATABASE = 'smartwatering'
+## The humidity sensor's name.
+device_name = 'DHT22'
+##  The date when the data was recorded. 
+now = datetime.datetime.now()
+## The date format year:month:day hour:minute:second. 
+date = now.strftime('%Y-%m-%d %H:%M:%S')  
+## Temperature in degrees Celsius , integer format.
+int_temperature_c = dhtDevice.temperature
+## Temperature in degrees Celsius converted into a string with °C
+temperature_c = format(int_temperature_c, '.1f') + '°C'
+## Temperature in degrees Fahrenheit , integer format.
+int_temperature_f = int_temperature_c * (9 / 5) + 32
+## Temperature in degrees Fahrenheit converted into a string with °F
+temperature_f = format(int_temperature_f, '.1f') + '°F'
+## Humidity, int format.
+int_humidity = int(dhtDevice.humidity)
+## Humidity converted into a string with %.
+humidity = format(int_humidity, 'd') + '%'
+## Current humidity.
+current_humidity = 0
+## Current temperature
+current_temperature = 0
 
-
-def insert_humidity_table(device_name, date, temperature_f, temperature_c, humidity):
-    global HOSTNAME  # using the globally defined variable
-    global USERNAME
-    global PASSWORD
-    global DATABASE
-    try:  # using a "try … except" block to catch and print any exceptions that might encounter
-        with connect(                    # establishing a connection
-                host=HOSTNAME,           # this function takes in the "host", "user", "password", "database" parameters
+# Functions 
+def insert_HumidityRecords(device_name, date, temperature_f, temperature_c, humidity):
+    """!Inserts data to PhpMyAdmin tables.
+    
+    After succesful connection inserts the requested data to PhpMyAdmin's HUMIDITY table.
+    """
+    #Global constants
+    global HOSTNAME, USERNAME, PASSWORD, DATABASE  
+    try:
+        # Establishing a connection.
+        with connect(                    
+                host=HOSTNAME,           
                 user=USERNAME,
                 password=PASSWORD,
                 database=DATABASE
         ) as connection:
-            # to insert records in the table, you need to pass the INSERT query to cursor.execute(),
-            # which accepts a MySQL query and executes the query on the connected MySQL database
+            # Inserting records in the table by passing the INSERT query to cursor.execute().
+            # This should accept the MySQL query and execute it on the connected MySQL database.
             humidity_query = "INSERT INTO HUMIDITY (DEVICE_NAME, DATE, TEMPERATURE_F, TEMPERATURE_C, HUMIDITY)" \
                                   "VALUES (%s, %s, %s, %s, %s)"
             humidity_records = (device_name, date, temperature_f, temperature_c, humidity)
             with connection.cursor() as cursor:
-                # passing the query and records to cursor.execute(), which performs the required execution
+                # Passing the query and records to cursor.execute(), which performs the required execution
                 cursor.execute(humidity_query, humidity_records)
-                # the MySQL connector does not autocommit transactions, must use the connection.commit() statement
+                # The MySQL connector doesn't autocommit transactions without commit.
                 connection.commit()
     except Error as e:
         print(e)
     finally:
-        cursor.close()  # closes the cursor, resets all results
-        connection.close()  # the connection object return to the connection pool
+        cursor.close()  # Closing the cursor, resets all results.
+        connection.close()  # The connection object return to the connection pool.
 
 
-try:
-    while True:
-        device_name = 'DHT22'    # the soil moisture sensor's name
-        now = datetime.datetime.now()
-        date = now.strftime('%Y-%m-%d %H:%M:%S')    # datetime with h:m:s
-        temperature_c = dhtDevice.temperature
-        temperature_f = temperature_c * (9 / 5) + 32
-        humidity = int(dhtDevice.humidity)
-        insert_humidity_table(device_name, date, format(temperature_f, '.1f') + '°F', format(temperature_c, '.1f') + '°C', format(humidity, 'd') + '%')
-        time.sleep(5)
-except(IOError, TypeError) as e:
-    print(e)
-except KeyboardInterrupt:
-    print('stopping')
+def get_HumidityRecord():
+    """!Gets the last humidity record from SQL database.
+
+    After succeful connection gets the last record of humidity from PhpMyAdmin 'HUMIDITY' table. 
+    This record will be defined as a variable.  
+    """
+    #Global constants 
+    global HOSTNAME, USERNAME, PASSWORD, DATABASE, current_humidity
+    try:
+        # Establishing a connection.
+        with connect(                  
+                host=HOSTNAME,           
+                user=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
+        ) as connection:
+            # Selecting the last record from the table by passing the standrad MySQL querys to execute.
+            humidity_record = "SELECT HUMIDITY FROM HUMIDITY ORDER BY RECORD_ID DESC LIMIT 1"
+            with connection.cursor() as cursor:
+                cursor.execute(humidity_record)
+                last_humidityRecord = cursor.fetchone()
+                converted_lastHumidityRecord = ''.join(last_humidityRecord)  # Converting the last record into str else it will be tuple
+                current_humidity = converted_lastHumidityRecord
+                # The MySQL connector doesn't autocommit transactions without commit.
+                connection.commit()
+    except Error as e:
+        print(e)
+    finally:
+        cursor.close()  # Closing the cursor and resets all results.
+        connection.close()  # The connection object return to the connection pool.
+
+
+def get_TemperatureRecord():
+    """!Gets the last humidity record from SQL database.
+
+    After succeful connection gets the last record of temperature from PhpMyAdmin 'TEMPERATURE_C' table. 
+    This record will be defined as a variable.  
+    """
+    #Global constants 
+    global HOSTNAME, USERNAME, PASSWORD, DATABASE, current_temperature
+    try:
+        # Establishing a connection.
+        with connect(                  
+                host=HOSTNAME,           
+                user=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
+        ) as connection:
+            # Selecting the last record from the table by passing the standrad MySQL querys to execute.
+            humidity_record = "SELECT TEMPERATURE_C FROM HUMIDITY ORDER BY RECORD_ID DESC LIMIT 1"
+            with connection.cursor() as cursor:
+                cursor.execute(humidity_record)
+                last_temperatureRecord = cursor.fetchone()
+                converted_lastTemperatureRecord = ''.join(last_temperatureRecord)  # Converting the last record into str else it will be tuple
+                current_temperature = converted_lastTemperatureRecord
+                # The MySQL connector doesn't autocommit transactions without commit.
+                connection.commit()
+    except Error as e:
+        print(e)
+    finally:
+        cursor.close()  # Closing the cursor and resets all results.
+        connection.close()  # The connection object return to the connection pool.
