@@ -106,10 +106,10 @@ def get_SoilMoistureRecord():
             with connection.cursor() as cursor:
                 cursor.execute(soil_moisture_record)
                 last_record = cursor.fetchone()
-                converted_lastrecord = ''.join(last_record)  # Converting the last record into str else it will be tuple
-                current_soilMoisture = converted_lastrecord
+                converted_lastMoistureRecord = ''.join(last_record)  # Converting the last record into str else it will be tuple.
                 # The MySQL connector doesn't autocommit transactions without commit.
                 connection.commit()
+                return converted_lastMoistureRecord
     except Error as e:
         print(e)
     finally:
