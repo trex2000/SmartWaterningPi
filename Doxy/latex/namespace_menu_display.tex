@@ -7,10 +7,22 @@ def \mbox{\hyperlink{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}{s
 \begin{DoxyCompactList}\small\item\em Ghaters the modules setups. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a1b57debb3b0891413fa7f0fac48c6c06}{main\+\_\+menu}} ()
 \begin{DoxyCompactList}\small\item\em Navigating throught the menu. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a2309dbff6282e23bff55bcea6412bbb0}{Run\+Selected\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Calls the functions. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a5a0a108b16c79a2e4dd33474671e1cc0}{async\+\_\+task\+\_\+manage\+Button1}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for push button 1 that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a9d480eb4f08f0f19371fb886ebadc3c6}{async\+\_\+task\+\_\+manage\+Button2}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for push button 2 that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_aecb3aae8e43f3866088cdece3943ee3e}{async\+\_\+task\+\_\+insert\+\_\+\+Humidity\+Records}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for inserting humidity records that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a9501b797b6e19963eafead75e09a1dae}{async\+\_\+task\+\_\+get\+\_\+\+Humidity\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last humidity record that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a01122bb468e986d46c31d522fc3fb1d2}{async\+\_\+task\+\_\+get\+\_\+\+Temperature\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last temperature record that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a1721b1a6ed3b320f708fcb5b26d292ad}{async\+\_\+task\+\_\+insert\+\_\+\+Soil\+Moisture\+Records}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for inserting moisture records that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a512a9ad0e919b517e340c18e7c9f3aca}{async\+\_\+task\+\_\+get\+\_\+\+Soil\+Moisture\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last moisture record that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a690d1b6c4c4a8380cc11c76826fe0252}{async\+\_\+task\+\_\+manage\+\_\+main\+\_\+menu}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for main menu that takes in a future. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
@@ -23,18 +35,18 @@ int \mbox{\hyperlink{namespace_menu_display_a4a217895fab1098ed599ba4b9613f167}{W
 int \mbox{\hyperlink{namespace_menu_display_a19a38f535a31f368bb418391f7372e53}{HEIGHT}} = 64
 \begin{DoxyCompactList}\small\item\em Height size of the display. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_menu_display_a4ce5d286a7e3abfa37b159ea86b83ace}{PADDING}} = 1
-\begin{DoxyCompactList}\small\item\em 5 bit space created inside the border \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em 5 bit space created inside the border. \end{DoxyCompactList}\item 
 busio \mbox{\hyperlink{namespace_menu_display_aef770b9f1de0061ea701b8b5020ab886}{i2c}} = busio.\+I2C(board.\+SCL, board.\+SDA)
 \begin{DoxyCompactList}\small\item\em Created I2C instance. \end{DoxyCompactList}\item 
 adafruit\+\_\+ssd1306 \mbox{\hyperlink{namespace_menu_display_ae18d4962142c5e26e53896b19cf42afb}{oled}} = adafruit\+\_\+ssd1306.\+SSD1306\+\_\+\+I2C(\mbox{\hyperlink{namespace_menu_display_a4a217895fab1098ed599ba4b9613f167}{WIDTH}}, \mbox{\hyperlink{namespace_menu_display_a19a38f535a31f368bb418391f7372e53}{HEIGHT}}, \mbox{\hyperlink{namespace_menu_display_aef770b9f1de0061ea701b8b5020ab886}{i2c}}, addr=\mbox{\hyperlink{namespace_menu_display_a172f0286677bf8e9e5c862f68d39307c}{OLED\+\_\+\+ADDRESS}})
 \item 
-ET \mbox{\hyperlink{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}{tree}} = ET.\+parse(\textquotesingle{}smart\+\_\+watering\+\_\+menu.\+xml\textquotesingle{})
+ET \mbox{\hyperlink{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}{tree}} = ET.\+parse(\textquotesingle{}Smart\+Watering\+Menu.\+xml\textquotesingle{})
 \begin{DoxyCompactList}\small\item\em Parsed the xml file. \end{DoxyCompactList}\item 
 ET \mbox{\hyperlink{namespace_menu_display_a812e2becc1dcf5ba476fa0434d67834c}{root}} = tree.\+getroot()
 \item 
-Image\+Font \mbox{\hyperlink{namespace_menu_display_a208fafe7f7a099e52d1b1e93a73fd655}{font}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)
+Image\+Font \mbox{\hyperlink{namespace_menu_display_a2d519c5f93857cc5f1502d7db4f34c7e}{font}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)
 \begin{DoxyCompactList}\small\item\em The base font of the menu. \end{DoxyCompactList}\item 
-Image\+Font \mbox{\hyperlink{namespace_menu_display_a54618024450408497960977ea6f103d2}{highlighted}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)
+Image\+Font \mbox{\hyperlink{namespace_menu_display_ab68592e0a058cfac6a935552ff7af2ff}{highlighted}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)
 \begin{DoxyCompactList}\small\item\em Selected item is highlighted on the menu. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_menu_display_a8c3dc45e0e41d4ec83a50ff6ce7a2e9e}{menu\+Page}} = 0
 \begin{DoxyCompactList}\small\item\em Menu index. \end{DoxyCompactList}\item 
@@ -42,15 +54,81 @@ int \mbox{\hyperlink{namespace_menu_display_a45f6326b7d484c6d6624e0d2d0a14a8c}{s
 \begin{DoxyCompactList}\small\item\em Selected item on the menu. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespace_menu_display_a607882fe9c465a69d0dfbdc82dbafe4d}{redraw\+Needed}} = True
 \begin{DoxyCompactList}\small\item\em The oled display will be redrawn if it\textquotesingle{}s True. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a13c7c91ee730d8f9da5d92735af4e87a}{T\+\_\+\+LONG\+\_\+\+SLEEP}} = 10
+\begin{DoxyCompactList}\small\item\em Longer sleep time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a1f6442ac4e7f0c1b4175fa6dd2115f60}{T\+\_\+\+AMBIENT\+\_\+\+LOGGING\+\_\+\+SLEEP\+\_\+\+VALUE}} = 60
+\begin{DoxyCompactList}\small\item\em Cyclic call of function that retrieves most recent ambient values. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_aeb0852409e27907a24b7e29fc0e49ac1}{current\+Hum}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured humidity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a775acf8a5eb0d573b07ed4b8e2cd6b8a}{current\+Temp}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured temperature. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a032c1661a5318fd536c446416ef35ea7}{current\+Moist}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured moisture. \end{DoxyCompactList}\item 
 asyncio \mbox{\hyperlink{namespace_menu_display_ab7fc35a5419f5499802c315e25985a23}{loop}} = asyncio.\+get\+\_\+event\+\_\+loop()
 \begin{DoxyCompactList}\small\item\em Define event loop. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_menu_display_a5a5df30b204a3b1ff95242b228db9034}{try}} \+:
+\item 
+Image \mbox{\hyperlink{namespace_menu_display_ab806a363680b196d1a314996285d2e23}{image}} = Image.\+new(\textquotesingle{}1\textquotesingle{}, (\mbox{\hyperlink{namespace_menu_display_a4a217895fab1098ed599ba4b9613f167}{WIDTH}}, \mbox{\hyperlink{namespace_menu_display_a19a38f535a31f368bb418391f7372e53}{HEIGHT}}))
+\item 
+Image\+Draw \mbox{\hyperlink{namespace_menu_display_ab11e832f9d28cbc19b7035ff64032a19}{draw}} = Image\+Draw.\+Draw(\mbox{\hyperlink{namespace_menu_display_ab806a363680b196d1a314996285d2e23}{image}})
+\item 
+\mbox{\hyperlink{namespace_menu_display_a99b045d3705f95e78a71e9caed550168}{fill}}
 \item 
 \mbox{\hyperlink{namespace_menu_display_a356daa1168b77be7023b235879d9eebc}{finally}} \+:
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_menu_display_a9501b797b6e19963eafead75e09a1dae}\label{namespace_menu_display_a9501b797b6e19963eafead75e09a1dae}} 
+\index{MenuDisplay@{MenuDisplay}!async\_task\_get\_HumidityRecord@{async\_task\_get\_HumidityRecord}}
+\index{async\_task\_get\_HumidityRecord@{async\_task\_get\_HumidityRecord}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{async\_task\_get\_HumidityRecord()}{async\_task\_get\_HumidityRecord()}}
+{\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Humidity\+Record (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for getting the last humidity record that takes in a future. 
+
+\mbox{\Hypertarget{namespace_menu_display_a512a9ad0e919b517e340c18e7c9f3aca}\label{namespace_menu_display_a512a9ad0e919b517e340c18e7c9f3aca}} 
+\index{MenuDisplay@{MenuDisplay}!async\_task\_get\_SoilMoistureRecord@{async\_task\_get\_SoilMoistureRecord}}
+\index{async\_task\_get\_SoilMoistureRecord@{async\_task\_get\_SoilMoistureRecord}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{async\_task\_get\_SoilMoistureRecord()}{async\_task\_get\_SoilMoistureRecord()}}
+{\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Soil\+Moisture\+Record (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for getting the last moisture record that takes in a future. 
+
+\mbox{\Hypertarget{namespace_menu_display_a01122bb468e986d46c31d522fc3fb1d2}\label{namespace_menu_display_a01122bb468e986d46c31d522fc3fb1d2}} 
+\index{MenuDisplay@{MenuDisplay}!async\_task\_get\_TemperatureRecord@{async\_task\_get\_TemperatureRecord}}
+\index{async\_task\_get\_TemperatureRecord@{async\_task\_get\_TemperatureRecord}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{async\_task\_get\_TemperatureRecord()}{async\_task\_get\_TemperatureRecord()}}
+{\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Temperature\+Record (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for getting the last temperature record that takes in a future. 
+
+\mbox{\Hypertarget{namespace_menu_display_aecb3aae8e43f3866088cdece3943ee3e}\label{namespace_menu_display_aecb3aae8e43f3866088cdece3943ee3e}} 
+\index{MenuDisplay@{MenuDisplay}!async\_task\_insert\_HumidityRecords@{async\_task\_insert\_HumidityRecords}}
+\index{async\_task\_insert\_HumidityRecords@{async\_task\_insert\_HumidityRecords}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{async\_task\_insert\_HumidityRecords()}{async\_task\_insert\_HumidityRecords()}}
+{\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+insert\+\_\+\+Humidity\+Records (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for inserting humidity records that takes in a future. 
+
+\mbox{\Hypertarget{namespace_menu_display_a1721b1a6ed3b320f708fcb5b26d292ad}\label{namespace_menu_display_a1721b1a6ed3b320f708fcb5b26d292ad}} 
+\index{MenuDisplay@{MenuDisplay}!async\_task\_insert\_SoilMoistureRecords@{async\_task\_insert\_SoilMoistureRecords}}
+\index{async\_task\_insert\_SoilMoistureRecords@{async\_task\_insert\_SoilMoistureRecords}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{async\_task\_insert\_SoilMoistureRecords()}{async\_task\_insert\_SoilMoistureRecords()}}
+{\footnotesize\ttfamily def Menu\+Display.\+async\+\_\+task\+\_\+insert\+\_\+\+Soil\+Moisture\+Records (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Define a coroutine for inserting moisture records that takes in a future. 
+
 \mbox{\Hypertarget{namespace_menu_display_a690d1b6c4c4a8380cc11c76826fe0252}\label{namespace_menu_display_a690d1b6c4c4a8380cc11c76826fe0252}} 
 \index{MenuDisplay@{MenuDisplay}!async\_task\_manage\_main\_menu@{async\_task\_manage\_main\_menu}}
 \index{async\_task\_manage\_main\_menu@{async\_task\_manage\_main\_menu}!MenuDisplay@{MenuDisplay}}
@@ -95,6 +173,19 @@ Navigating throught the menu.
     Push button 1 shall be used to navigate through the menu anf push button 2 to select an option which will navigate to another menu or
     runs a function. 
 \end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_menu_display_a2309dbff6282e23bff55bcea6412bbb0}\label{namespace_menu_display_a2309dbff6282e23bff55bcea6412bbb0}} 
+\index{MenuDisplay@{MenuDisplay}!RunSelectedFunction@{RunSelectedFunction}}
+\index{RunSelectedFunction@{RunSelectedFunction}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{RunSelectedFunction()}{RunSelectedFunction()}}
+{\footnotesize\ttfamily def Menu\+Display.\+Run\+Selected\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calls the functions. 
+
+\begin{DoxyVerb}If the selected item's text in the current page is equal to the given string than runs the approriate function from a different module.
+This functions return a value, that's why this functions are defined as a variable which are also returned.  
+\end{DoxyVerb}
  \mbox{\Hypertarget{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}\label{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}} 
 \index{MenuDisplay@{MenuDisplay}!setup@{setup}}
 \index{setup@{setup}!MenuDisplay@{MenuDisplay}}
@@ -108,17 +199,59 @@ Ghaters the modules setups.
 
 
 \doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_menu_display_aeb0852409e27907a24b7e29fc0e49ac1}\label{namespace_menu_display_aeb0852409e27907a24b7e29fc0e49ac1}} 
+\index{MenuDisplay@{MenuDisplay}!currentHum@{currentHum}}
+\index{currentHum@{currentHum}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{currentHum}{currentHum}}
+{\footnotesize\ttfamily int Menu\+Display.\+current\+Hum = -\/1}
+
+
+
+Set init value of measured humidity. 
+
+\mbox{\Hypertarget{namespace_menu_display_a032c1661a5318fd536c446416ef35ea7}\label{namespace_menu_display_a032c1661a5318fd536c446416ef35ea7}} 
+\index{MenuDisplay@{MenuDisplay}!currentMoist@{currentMoist}}
+\index{currentMoist@{currentMoist}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{currentMoist}{currentMoist}}
+{\footnotesize\ttfamily int Menu\+Display.\+current\+Moist = -\/1}
+
+
+
+Set init value of measured moisture. 
+
+\mbox{\Hypertarget{namespace_menu_display_a775acf8a5eb0d573b07ed4b8e2cd6b8a}\label{namespace_menu_display_a775acf8a5eb0d573b07ed4b8e2cd6b8a}} 
+\index{MenuDisplay@{MenuDisplay}!currentTemp@{currentTemp}}
+\index{currentTemp@{currentTemp}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{currentTemp}{currentTemp}}
+{\footnotesize\ttfamily int Menu\+Display.\+current\+Temp = -\/1}
+
+
+
+Set init value of measured temperature. 
+
+\mbox{\Hypertarget{namespace_menu_display_ab11e832f9d28cbc19b7035ff64032a19}\label{namespace_menu_display_ab11e832f9d28cbc19b7035ff64032a19}} 
+\index{MenuDisplay@{MenuDisplay}!draw@{draw}}
+\index{draw@{draw}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{draw}{draw}}
+{\footnotesize\ttfamily Image\+Draw Menu\+Display.\+draw = Image\+Draw.\+Draw(\mbox{\hyperlink{namespace_menu_display_ab806a363680b196d1a314996285d2e23}{image}})}
+
+\mbox{\Hypertarget{namespace_menu_display_a99b045d3705f95e78a71e9caed550168}\label{namespace_menu_display_a99b045d3705f95e78a71e9caed550168}} 
+\index{MenuDisplay@{MenuDisplay}!fill@{fill}}
+\index{fill@{fill}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{fill}{fill}}
+{\footnotesize\ttfamily Menu\+Display.\+fill}
+
 \mbox{\Hypertarget{namespace_menu_display_a356daa1168b77be7023b235879d9eebc}\label{namespace_menu_display_a356daa1168b77be7023b235879d9eebc}} 
 \index{MenuDisplay@{MenuDisplay}!finally@{finally}}
 \index{finally@{finally}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{finally}{finally}}
 {\footnotesize\ttfamily Menu\+Display.\+finally \+:}
 
-\mbox{\Hypertarget{namespace_menu_display_a208fafe7f7a099e52d1b1e93a73fd655}\label{namespace_menu_display_a208fafe7f7a099e52d1b1e93a73fd655}} 
+\mbox{\Hypertarget{namespace_menu_display_a2d519c5f93857cc5f1502d7db4f34c7e}\label{namespace_menu_display_a2d519c5f93857cc5f1502d7db4f34c7e}} 
 \index{MenuDisplay@{MenuDisplay}!font@{font}}
 \index{font@{font}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{font}{font}}
-{\footnotesize\ttfamily Image\+Font Menu\+Display.\+font = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)}
+{\footnotesize\ttfamily Menu\+Display.\+font = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)}
 
 
 
@@ -134,11 +267,11 @@ The base font of the menu.
 
 Height size of the display. 
 
-\mbox{\Hypertarget{namespace_menu_display_a54618024450408497960977ea6f103d2}\label{namespace_menu_display_a54618024450408497960977ea6f103d2}} 
+\mbox{\Hypertarget{namespace_menu_display_ab68592e0a058cfac6a935552ff7af2ff}\label{namespace_menu_display_ab68592e0a058cfac6a935552ff7af2ff}} 
 \index{MenuDisplay@{MenuDisplay}!highlighted@{highlighted}}
 \index{highlighted@{highlighted}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{highlighted}{highlighted}}
-{\footnotesize\ttfamily Image\+Font Menu\+Display.\+highlighted = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)}
+{\footnotesize\ttfamily Menu\+Display.\+highlighted = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)}
 
 
 
@@ -153,6 +286,12 @@ Selected item is highlighted on the menu.
 
 
 Created I2C instance. 
+
+\mbox{\Hypertarget{namespace_menu_display_ab806a363680b196d1a314996285d2e23}\label{namespace_menu_display_ab806a363680b196d1a314996285d2e23}} 
+\index{MenuDisplay@{MenuDisplay}!image@{image}}
+\index{image@{image}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{image}{image}}
+{\footnotesize\ttfamily Image Menu\+Display.\+image = Image.\+new(\textquotesingle{}1\textquotesingle{}, (\mbox{\hyperlink{namespace_menu_display_a4a217895fab1098ed599ba4b9613f167}{WIDTH}}, \mbox{\hyperlink{namespace_menu_display_a19a38f535a31f368bb418391f7372e53}{HEIGHT}}))}
 
 \mbox{\Hypertarget{namespace_menu_display_ab7fc35a5419f5499802c315e25985a23}\label{namespace_menu_display_ab7fc35a5419f5499802c315e25985a23}} 
 \index{MenuDisplay@{MenuDisplay}!loop@{loop}}
@@ -198,7 +337,7 @@ The I2C address of the display.
 
 
 
-5 bit space created inside the border 
+5 bit space created inside the border. 
 
 \mbox{\Hypertarget{namespace_menu_display_a607882fe9c465a69d0dfbdc82dbafe4d}\label{namespace_menu_display_a607882fe9c465a69d0dfbdc82dbafe4d}} 
 \index{MenuDisplay@{MenuDisplay}!redrawNeeded@{redrawNeeded}}
@@ -226,11 +365,31 @@ The oled display will be redrawn if it\textquotesingle{}s True.
 
 Selected item on the menu. 
 
+\mbox{\Hypertarget{namespace_menu_display_a1f6442ac4e7f0c1b4175fa6dd2115f60}\label{namespace_menu_display_a1f6442ac4e7f0c1b4175fa6dd2115f60}} 
+\index{MenuDisplay@{MenuDisplay}!T\_AMBIENT\_LOGGING\_SLEEP\_VALUE@{T\_AMBIENT\_LOGGING\_SLEEP\_VALUE}}
+\index{T\_AMBIENT\_LOGGING\_SLEEP\_VALUE@{T\_AMBIENT\_LOGGING\_SLEEP\_VALUE}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{T\_AMBIENT\_LOGGING\_SLEEP\_VALUE}{T\_AMBIENT\_LOGGING\_SLEEP\_VALUE}}
+{\footnotesize\ttfamily int Menu\+Display.\+T\+\_\+\+AMBIENT\+\_\+\+LOGGING\+\_\+\+SLEEP\+\_\+\+VALUE = 60}
+
+
+
+Cyclic call of function that retrieves most recent ambient values. 
+
+\mbox{\Hypertarget{namespace_menu_display_a13c7c91ee730d8f9da5d92735af4e87a}\label{namespace_menu_display_a13c7c91ee730d8f9da5d92735af4e87a}} 
+\index{MenuDisplay@{MenuDisplay}!T\_LONG\_SLEEP@{T\_LONG\_SLEEP}}
+\index{T\_LONG\_SLEEP@{T\_LONG\_SLEEP}!MenuDisplay@{MenuDisplay}}
+\doxysubsubsection{\texorpdfstring{T\_LONG\_SLEEP}{T\_LONG\_SLEEP}}
+{\footnotesize\ttfamily int Menu\+Display.\+T\+\_\+\+LONG\+\_\+\+SLEEP = 10}
+
+
+
+Longer sleep time. 
+
 \mbox{\Hypertarget{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}\label{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}} 
 \index{MenuDisplay@{MenuDisplay}!tree@{tree}}
 \index{tree@{tree}!MenuDisplay@{MenuDisplay}}
 \doxysubsubsection{\texorpdfstring{tree}{tree}}
-{\footnotesize\ttfamily ET Menu\+Display.\+tree = ET.\+parse(\textquotesingle{}smart\+\_\+watering\+\_\+menu.\+xml\textquotesingle{})}
+{\footnotesize\ttfamily ET Menu\+Display.\+tree = ET.\+parse(\textquotesingle{}Smart\+Watering\+Menu.\+xml\textquotesingle{})}
 
 
 

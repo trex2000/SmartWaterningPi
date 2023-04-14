@@ -12,10 +12,22 @@ def \mbox{\hyperlink{namespace_menu_display_a3b7343c2bbd5d40a99c056abce94291f}{M
 \begin{DoxyCompactList}\small\item\em Ghaters the modules setups. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a1b57debb3b0891413fa7f0fac48c6c06}{Menu\+Display.\+main\+\_\+menu}} ()
 \begin{DoxyCompactList}\small\item\em Navigating throught the menu. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a2309dbff6282e23bff55bcea6412bbb0}{Menu\+Display.\+Run\+Selected\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Calls the functions. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a5a0a108b16c79a2e4dd33474671e1cc0}{Menu\+Display.\+async\+\_\+task\+\_\+manage\+Button1}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for push button 1 that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a9d480eb4f08f0f19371fb886ebadc3c6}{Menu\+Display.\+async\+\_\+task\+\_\+manage\+Button2}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for push button 2 that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_aecb3aae8e43f3866088cdece3943ee3e}{Menu\+Display.\+async\+\_\+task\+\_\+insert\+\_\+\+Humidity\+Records}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for inserting humidity records that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a9501b797b6e19963eafead75e09a1dae}{Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Humidity\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last humidity record that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a01122bb468e986d46c31d522fc3fb1d2}{Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Temperature\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last temperature record that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a1721b1a6ed3b320f708fcb5b26d292ad}{Menu\+Display.\+async\+\_\+task\+\_\+insert\+\_\+\+Soil\+Moisture\+Records}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for inserting moisture records that takes in a future. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_menu_display_a512a9ad0e919b517e340c18e7c9f3aca}{Menu\+Display.\+async\+\_\+task\+\_\+get\+\_\+\+Soil\+Moisture\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Define a coroutine for getting the last moisture record that takes in a future. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_menu_display_a690d1b6c4c4a8380cc11c76826fe0252}{Menu\+Display.\+async\+\_\+task\+\_\+manage\+\_\+main\+\_\+menu}} ()
 \begin{DoxyCompactList}\small\item\em Define a coroutine for main menu that takes in a future. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
@@ -28,18 +40,18 @@ int \mbox{\hyperlink{namespace_menu_display_a4a217895fab1098ed599ba4b9613f167}{M
 int \mbox{\hyperlink{namespace_menu_display_a19a38f535a31f368bb418391f7372e53}{Menu\+Display.\+HEIGHT}} = 64
 \begin{DoxyCompactList}\small\item\em Height size of the display. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_menu_display_a4ce5d286a7e3abfa37b159ea86b83ace}{Menu\+Display.\+PADDING}} = 1
-\begin{DoxyCompactList}\small\item\em 5 bit space created inside the border \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em 5 bit space created inside the border. \end{DoxyCompactList}\item 
 busio \mbox{\hyperlink{namespace_menu_display_aef770b9f1de0061ea701b8b5020ab886}{Menu\+Display.\+i2c}} = busio.\+I2C(board.\+SCL, board.\+SDA)
 \begin{DoxyCompactList}\small\item\em Created I2C instance. \end{DoxyCompactList}\item 
 adafruit\+\_\+ssd1306 \mbox{\hyperlink{namespace_menu_display_ae18d4962142c5e26e53896b19cf42afb}{Menu\+Display.\+oled}} = adafruit\+\_\+ssd1306.\+SSD1306\+\_\+\+I2C(WIDTH, HEIGHT, i2c, addr=OLED\+\_\+\+ADDRESS)
 \item 
-ET \mbox{\hyperlink{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}{Menu\+Display.\+tree}} = ET.\+parse(\textquotesingle{}smart\+\_\+watering\+\_\+menu.\+xml\textquotesingle{})
+ET \mbox{\hyperlink{namespace_menu_display_ad27d5b4d974cf25974fdfe6980724a29}{Menu\+Display.\+tree}} = ET.\+parse(\textquotesingle{}Smart\+Watering\+Menu.\+xml\textquotesingle{})
 \begin{DoxyCompactList}\small\item\em Parsed the xml file. \end{DoxyCompactList}\item 
 ET \mbox{\hyperlink{namespace_menu_display_a812e2becc1dcf5ba476fa0434d67834c}{Menu\+Display.\+root}} = tree.\+getroot()
 \item 
-Image\+Font \mbox{\hyperlink{namespace_menu_display_a208fafe7f7a099e52d1b1e93a73fd655}{Menu\+Display.\+font}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)
+Image\+Font \mbox{\hyperlink{namespace_menu_display_a2d519c5f93857cc5f1502d7db4f34c7e}{Menu\+Display.\+font}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif.\+ttf\textquotesingle{}, 10)
 \begin{DoxyCompactList}\small\item\em The base font of the menu. \end{DoxyCompactList}\item 
-Image\+Font \mbox{\hyperlink{namespace_menu_display_a54618024450408497960977ea6f103d2}{Menu\+Display.\+highlighted}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)
+Image\+Font \mbox{\hyperlink{namespace_menu_display_ab68592e0a058cfac6a935552ff7af2ff}{Menu\+Display.\+highlighted}} = Image\+Font.\+truetype(\textquotesingle{}Deja\+Vu\+Serif-\/Bold.\+ttf\textquotesingle{}, 11)
 \begin{DoxyCompactList}\small\item\em Selected item is highlighted on the menu. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_menu_display_a8c3dc45e0e41d4ec83a50ff6ce7a2e9e}{Menu\+Display.\+menu\+Page}} = 0
 \begin{DoxyCompactList}\small\item\em Menu index. \end{DoxyCompactList}\item 
@@ -47,9 +59,25 @@ int \mbox{\hyperlink{namespace_menu_display_a45f6326b7d484c6d6624e0d2d0a14a8c}{M
 \begin{DoxyCompactList}\small\item\em Selected item on the menu. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespace_menu_display_a607882fe9c465a69d0dfbdc82dbafe4d}{Menu\+Display.\+redraw\+Needed}} = True
 \begin{DoxyCompactList}\small\item\em The oled display will be redrawn if it\textquotesingle{}s True. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a13c7c91ee730d8f9da5d92735af4e87a}{Menu\+Display.\+T\+\_\+\+LONG\+\_\+\+SLEEP}} = 10
+\begin{DoxyCompactList}\small\item\em Longer sleep time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a1f6442ac4e7f0c1b4175fa6dd2115f60}{Menu\+Display.\+T\+\_\+\+AMBIENT\+\_\+\+LOGGING\+\_\+\+SLEEP\+\_\+\+VALUE}} = 60
+\begin{DoxyCompactList}\small\item\em Cyclic call of function that retrieves most recent ambient values. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_aeb0852409e27907a24b7e29fc0e49ac1}{Menu\+Display.\+current\+Hum}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured humidity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a775acf8a5eb0d573b07ed4b8e2cd6b8a}{Menu\+Display.\+current\+Temp}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured temperature. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_menu_display_a032c1661a5318fd536c446416ef35ea7}{Menu\+Display.\+current\+Moist}} = -\/1
+\begin{DoxyCompactList}\small\item\em Set init value of measured moisture. \end{DoxyCompactList}\item 
 asyncio \mbox{\hyperlink{namespace_menu_display_ab7fc35a5419f5499802c315e25985a23}{Menu\+Display.\+loop}} = asyncio.\+get\+\_\+event\+\_\+loop()
 \begin{DoxyCompactList}\small\item\em Define event loop. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_menu_display_a5a5df30b204a3b1ff95242b228db9034}{Menu\+Display.\+try}} \+:
+\item 
+Image \mbox{\hyperlink{namespace_menu_display_ab806a363680b196d1a314996285d2e23}{Menu\+Display.\+image}} = Image.\+new(\textquotesingle{}1\textquotesingle{}, (WIDTH, HEIGHT))
+\item 
+Image\+Draw \mbox{\hyperlink{namespace_menu_display_ab11e832f9d28cbc19b7035ff64032a19}{Menu\+Display.\+draw}} = Image\+Draw.\+Draw(image)
+\item 
+\mbox{\hyperlink{namespace_menu_display_a99b045d3705f95e78a71e9caed550168}{Menu\+Display.\+fill}}
 \item 
 \mbox{\hyperlink{namespace_menu_display_a356daa1168b77be7023b235879d9eebc}{Menu\+Display.\+finally}} \+:
 \end{DoxyCompactItemize}

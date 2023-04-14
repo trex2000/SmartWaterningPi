@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['width_0',['WIDTH',['../namespace_menu_display.html#a4a217895fab1098ed599ba4b9613f167',1,'MenuDisplay.WIDTH()'],['../namespace_soil_moisture_sensor.html#a2ceb24e9f72abe0a96245b0248307211',1,'SoilMoistureSensor.WIDTH()']]]
+  ['username_0',['USERNAME',['../namespace_humidity_sensor.html#aa38d395f1b45ca89f85a93fbb71d105d',1,'HumiditySensor.USERNAME()'],['../namespace_soil_moisture_sensor.html#a56c4d17b9eb7eaf4b7ecfdca906507ae',1,'SoilMoistureSensor.USERNAME()']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['insert_5fhumidity_5ftable_0',['insert_humidity_table',['../namespace_humidity_sesnsor.html#ac1192f379eacfc24efb255da7c7bf6c3',1,'HumiditySesnsor']]],
-  ['insert_5fsoil_5fmoisture_5ftable_1',['insert_soil_moisture_table',['../namespace_soil_moisture_sensor.html#acb3ddadcf1585a45dd99f655974f3410',1,'SoilMoistureSensor']]]
+  ['get_5fhumidityrecord_0',['get_HumidityRecord',['../namespace_humidity_sensor.html#af99ffc35adcbb5260c78644dd19f9118',1,'HumiditySensor']]],
+  ['get_5fsoilmoisturerecord_1',['get_SoilMoistureRecord',['../namespace_soil_moisture_sensor.html#abaae26d8d040ed9a8c4c4495618802d0',1,'SoilMoistureSensor']]],
+  ['get_5ftemperaturerecord_2',['get_TemperatureRecord',['../namespace_humidity_sensor.html#ab9b165078c3ba48ff13ad6defbfbc545',1,'HumiditySensor']]]
 ];
