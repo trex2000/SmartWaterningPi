@@ -7,11 +7,12 @@ humidity and also turn on or off the automatic watering based on the soil moistu
 The data from the sensors are logged into an SQL database.
 """
 
-"""! @file MenuDisplay.py
+"""!Displays the menu and the current values, statuses.
 """
 
 
 # Imports
+import os
 import asyncio
 import board    
 import busio
@@ -19,6 +20,7 @@ import RPi.GPIO as GPIO
 import adafruit_ssd1306 
 from PIL import Image, ImageDraw, ImageFont
 import xml.etree.ElementTree as ET
+from mysqlx import InternalError
 from PushButton import *
 from HumiditySensor import *
 from SoilMoistureSensor import *
@@ -54,11 +56,11 @@ T_LONG_SLEEP = 10 # 10 second
 ## Cyclic call of function that retrieves most recent ambient values.
 T_AMBIENT_LOGGING_SLEEP_VALUE = 60  # 1 minute 
 ## Set init value of measured humidity.
-currentHum = -1
+currentHum = -10000
 ## Set init value of measured temperature.
-currentTemp = -1
+currentTemp = -10000
 ## Set init value of measured moisture.
-currentMoist = -1
+currentMoist = -10000
 
 
 #Functions
@@ -107,17 +109,17 @@ def main_menu():
         if button2PressedEvent.is_set():  # Checks if the event was fired. 
             # Checks if the selected item is not the last one.             
             if selectedItem != lastElement: 
-                if root[menuPage][selectedItem].get('callable')=='true':  # If the item is callable, it calls and displays the data.                   
+                if root[menuPage][selectedItem].get('callable')=='true':  # If the item is callable, it calls and displays the data.
                     ## Records from different sensors, which will be displayed in the future.                   
                     recordToDisplay = RunSelectedFunction()
                     oled.fill(0)
                     image = Image.new('1', (WIDTH, HEIGHT))  
                     draw = ImageDraw.Draw(image)
                     oled.show() 
-                    draw.text((PADDING, PADDING), f'1. Sensor value: {recordToDisplay}', font=highlighted, fill=255)
-                    draw.text((PADDING, PADDING + 10), '2. Exit', font=font, fill=255)
+                    draw.text((PADDING, PADDING), recordToDisplay, font=highlighted, fill=255)
+                    draw.text((PADDING, PADDING + 30), '2. Exit', font=font, fill=255)
                     oled.image(image)
-                    oled.show() 
+                    oled.show()            
                 else:  # If not callable dislpays the next menu.
                     nextMenuItemToFind=root[menuPage][selectedItem].text
                     for j in range(0, numberOfElements):
@@ -126,12 +128,15 @@ def main_menu():
                             selectedItem = 0    # The first item on the list is selected.
                             redrawNeeded = True
                             break
-            else:   # If the last item is selected than displays the previous menu.
+            else:  # If the last item is selected than displays the previous menu.
                 selectedItem = menuPage - 1  # The selected item is the one which submenu was opened.
                 menuPage = 0
-                redrawNeeded = True                             
+                redrawNeeded = True  
+            if root[menuPage][selectedItem].text == '5. Power off':
+                os.system('sudo poweroff')                     
         button2PressedEvent.clear()  # The event is marked as 'not set' via this function.
-        
+
+
         
 def  RunSelectedFunction():
     """!Calls the functions.
@@ -139,16 +144,23 @@ def  RunSelectedFunction():
     If the selected item's text in the current page is equal to the given string than runs the approriate function from a different module.
     This functions return a value, that's why this functions are defined as a variable which are also returned.  
     """
+
     global currentTemp, currentHum, currentMoist
     if root[menuPage][selectedItem].text == '2. Current temperature':
         currentTemp = get_TemperatureRecord()
-        return currentTemp
+        if currentTemp == -10000: 
+            currentTemp = 'N/A'
+        return f'1. Sensor\n value: {currentTemp}'
     elif root[menuPage][selectedItem].text == '3. Current humidity':
         currentHum = get_HumidityRecord()
-        return currentHum
+        if currentHum == -10000: 
+            currentHum = 'N/A'
+        return f'1. Sensor\n value: {currentHum}'
     elif root[menuPage][selectedItem].text == '2. Current moisture':
         currentMoist = get_SoilMoistureRecord()
-        return currentMoist
+        if currentMoist == -10000: 
+            currentMoist = 'N/A'
+        return f'1. Sensor\n value: {currentMoist}'
 
 
 async def async_task_manageButton1():
@@ -247,7 +259,16 @@ except KeyboardInterrupt:
     oled.show() 
     draw.text((PADDING + 10, PADDING + 20), 'MENU PAUSED', font=highlighted, fill=255)
     oled.image(image)
-    oled.show()                                 
+    oled.show() 
+except ConnectionError:
+    oled.fill(0)
+    image = Image.new('1', (WIDTH, HEIGHT))  
+    draw = ImageDraw.Draw(image)
+    oled.show() 
+    draw.text((PADDING, PADDING), '1. SQL connection not found', font=highlighted, fill=255)
+    draw.text((PADDING, PADDING + 10), '2. Exit', font=font, fill=255)
+    oled.image(image)
+    oled.show() 
 finally:
     print("Closing Loop")
     loop.close()
