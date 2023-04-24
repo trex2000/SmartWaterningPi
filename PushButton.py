@@ -7,72 +7,69 @@ import RPi.GPIO as GPIO
 import asyncio
 
 # Global Constants of the push buttons
-## Debounce counter initial value
+## Debounce counter initial value.
 T_DEBOUNCE_INIT_VALUE = 10  
-## Sleep time
+## Sleep time.
 T_SLEEP = 0.01  
-## Counter was running and reached 0
+## Counter was running and reached 0.
 CNT_ELAPSED_VAL = 0  
-## Counter was stopped and is not running
+## Counter was stopped and is not running.
 CNT_STOPPED_VAL = 0xFFFF  
-## Push button 1 pin number
+## Push Button 1 pin number.
 PUSH_BUT1 = 16 
-## Push button 2 pin number
+## Push Button 2 pin number.
 PUSH_BUT2 = 20  
-## Initial values is assigned for the first push button's debounce counter 
+## Initial value is assigned for Push Button1's debounce counter.
 debounce_counter1 = T_DEBOUNCE_INIT_VALUE
-## Initial values is assigned for the second push button's debounce counter 
+## Initial value is assigned for Push Button3's debounce counter.
 debounce_counter2 = T_DEBOUNCE_INIT_VALUE
-## Defined an event for the first push button's debounced state
+## Defined an event for Push Button1's debounced state.
 button1PressedEvent = asyncio.Event()
-## Defined an event for the second push button's debounced state
+## Defined an event for Push Button2's debounced state.
 button2PressedEvent = asyncio.Event()
 
 
 # Functions
 def setup_button():
-
     """!Setup the library to use board numbering.
 
-    Uses the GPIO pin numbers instead of 'standard' pin numbers, initialize pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
+    Uses the GPIO pin numbers instead of 'standard' pin numbers.
+    Initializes pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
     Instruct the Raspberry Pi to pull the pin high using the pull_up_down parameters.
     """
 
-    ## Ignore warning for now
-    GPIO.setwarnings(False)
-    ## Using the GPIO pin numbers instead of 'standard' pin numbers
-    GPIO.setmode(GPIO.BCM)  
+    GPIO.setwarnings(False)  # Ignore warnings for now.
+    GPIO.setmode(GPIO.BCM)  # Using GPIO pin numbers.
     GPIO.setup(PUSH_BUT1, GPIO.IN, pull_up_down=GPIO.PUD_UP) 
     GPIO.setup(PUSH_BUT2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# The Push Buttons input pin's initial value rae HIGH, because we use pull up resistors.
+# Pull up resistor: the pin is connect to VCC, with an open switch connection between pin and GND.
+# Pull up resistor keeps the input HIGH  
 
 
 def counter_running(counter):
-
     """!Counter is running.
 
-    @param counter   The debounce counter.
+    Running as long as its elapsed AND stopped.
     """
 
-    if (counter != CNT_ELAPSED_VAL) and (counter != CNT_STOPPED_VAL):
+    if counter != CNT_ELAPSED_VAL and counter != CNT_STOPPED_VAL:
         return True
 
 
 def counter_elapsed(counter):
-    
     """!Counter is elapsed.
 
-    @param counter   The debounce counter.
+    Counter is running and reached 0.
     """
     
-    return counter == CNT_ELAPSED_VAL
+    return counter == CNT_ELAPSED_VAL     
 
 
 def start_counter(counter, init_value):
-    
     """!Starts counter.
 
-    @param counter   The debounce counter.
-    @param init_values   The debounce counter.
+    Assigns a value for the counter and starts to count.
     """
     
     counter = init_value
@@ -80,10 +77,9 @@ def start_counter(counter, init_value):
 
 
 def stop_counter(counter):
-    
     """!Counter stops.
 
-    @param counter   The debounce counter
+    Counter reached 0 and stopped running.
     """
     
     counter = CNT_STOPPED_VAL
@@ -91,38 +87,34 @@ def stop_counter(counter):
 
 
 def manage_but1():
+    """! Debounces Push Button1.
 
-    """! Debounces push button 1.
-
-    The push button is debounced when the button is pressed for 10ms.
+    Push Button1 is debounced when the button is pressed for 10ms.
     """
     
     global debounce_counter1, button1PressedEvent
-    if GPIO.input(PUSH_BUT1) == 0:  # push button 1 pressed
-        if counter_running(debounce_counter1):  
+    if GPIO.input(PUSH_BUT1) == 0:  # Push Button 1 pressed.
+        if counter_running(debounce_counter1):  # Counter is running.  
             debounce_counter1 = debounce_counter1 - 1  
-        elif counter_elapsed(debounce_counter1):
-            debounce_counter1 = stop_counter(debounce_counter1)
-            button1PressedEvent.set()  # push button pressed for 10 ms 
+        elif counter_elapsed(debounce_counter1):  # Counter reached 0.
+            debounce_counter1 = stop_counter(debounce_counter1)  # Counter stops running.
+            button1PressedEvent.set()  # Push Button 1 was debounced (pressed for 10ms) and an event is set. 
     else:
-        debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  # if the push button is depress the
-        # counter will start again     
+        debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  # In case Push Button1 is depressed the counter starts again     
 
 
 def manage_but2():
-    
-    """! Debounces push button 2.
+    """! Debounces Push Button2.
 
-    The push button is debounced when the button is pressed for 10ms.
+    Push Button2 is debounced when the button is pressed for 10ms.
     """
     
     global debounce_counter2, button2Pressed
-    if GPIO.input(PUSH_BUT2) == 0:  # push button 2 is pressed
-        if counter_running(debounce_counter2):  
+    if GPIO.input(PUSH_BUT2) == 0:  # Push Button 2 is pressed.
+        if counter_running(debounce_counter2):  # Counter is running.
             debounce_counter2 = debounce_counter2 - 1
-        elif counter_elapsed(debounce_counter2):
+        elif counter_elapsed(debounce_counter2):  # Counter reached 0.
             debounce_counter2 = stop_counter(debounce_counter2)
-            button2PressedEvent.set()  # push button is pressed for 10ms and
+            button2PressedEvent.set()  # Push Button 2 was deboounced (pressed for 10ms) and an event is set.
     else:
-        debounce_counter2 = start_counter(debounce_counter2, T_DEBOUNCE_INIT_VALUE)  # if the push button is depress the
-        # counter will start again     
+        debounce_counter2 = start_counter(debounce_counter2, T_DEBOUNCE_INIT_VALUE)  # In case Push Button2 is depressd the counter starts again.
