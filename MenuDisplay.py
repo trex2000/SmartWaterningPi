@@ -12,15 +12,15 @@ The data from the sensors are logged into an SQL database.
 
 
 # Imports
-import os
-import asyncio
+import os  
+import asyncio 
 import board    
 import busio
 import RPi.GPIO as GPIO
 import adafruit_ssd1306 
 from PIL import Image, ImageDraw, ImageFont
 import xml.etree.ElementTree as ET
-from mysqlx import InternalError
+from mysqlx import Error
 from PushButton import *
 from HumiditySensor import *
 from SoilMoistureSensor import *
@@ -33,7 +33,7 @@ OLED_ADDRESS = 0x3c
 WIDTH = 128
 ## Height size of the display.
 HEIGHT = 64
-## 5 bit space created inside the border.
+## 1 bit space created inside the border.
 PADDING = 1
 ## Created I2C instance.
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -43,24 +43,32 @@ tree = ET.parse('SmartWateringMenu.xml')
 root = tree.getroot()
 ## The base font of the menu. 
 font = ImageFont.truetype('DejaVuSerif.ttf', 10)
-## Selected item is highlighted on the menu.
+## Selected items font on the menu.
 highlighted = ImageFont.truetype('DejaVuSerif-Bold.ttf', 11)
-## Menu index.
+## Menu's page index.
 menuPage = 0
-## Selected item on the menu.
+## Selected item's index on the menu.
 selectedItem = 0 
 ## The oled display will be redrawn if it's True. 
 redrawNeeded = True
 ## Longer sleep time.
 T_LONG_SLEEP = 10 # 10 second
-## Cyclic call of function that retrieves most recent ambient values.
-T_AMBIENT_LOGGING_SLEEP_VALUE = 60  # 1 minute 
 ## Set init value of measured humidity.
 currentHum = -10000
 ## Set init value of measured temperature.
 currentTemp = -10000
 ## Set init value of measured moisture.
 currentMoist = -10000
+## Define event loop.
+loop = asyncio.get_event_loop()
+## State of the humidity sensor.
+stateHum = 'Deactivated'
+## The humidity sensor is off, doesn't collect records.
+runningHumiditySensor = False
+## State of the moisture sensor.
+stateMoist = 'Deactivated'
+## The Moisture sensor is off, doesn't collect records.
+runningMoistureSensor = False
 
 
 #Functions
@@ -74,36 +82,36 @@ def main_menu():
         """!Navigating throught the menu
         
         The connected OLED displays the menu with the currently active menu point which is highlighted.
-        Push button 1 shall be used to navigate through the menu anf push button 2 to select an option which will navigate to another menu or
+        Push Button1 shall be used to navigate through the menu and Push Button2 to select an option which will navigate to another menu or
         runs a function. 
         """   
+
         # Global values 
         global font, highlighted, menuPage, selectedItem, button1PressedEvent, redrawNeeded
         ## Number of elements in the main_menu.
-        numberOfElements = len(root[menuPage]) 
+        numberOfElements = len(root[menuPage])
         ## Last item in the menu.
-        lastElement = int(numberOfElements) - 1
-        if redrawNeeded:
-            redrawNeeded = False
+        lastElement = int(numberOfElements) - 1  # After indexes there is less element. 
+        if redrawNeeded:  # Redraws the OLED.
+            redrawNeeded = False 
             oled.fill(0)
             image = Image.new('1', (WIDTH, HEIGHT))  
             draw = ImageDraw.Draw(image)
             oled.show()  # OLED display is cleared.
             for i in range(0, numberOfElements):
-                if i == selectedItem:  # the selected item should be highlighted
+                if i == selectedItem:  # The selected item should be highlighted.
                     draw.text((PADDING, PADDING + (i * 10)), root[menuPage][i].text, font=highlighted, fill=255)
                 else:
                     draw.text((PADDING, PADDING + (i * 10)), root[menuPage][i].text, font=font, fill=255)
             oled.image(image)
-            oled.show()  # Shows the menu with the active point highlighted.
+            oled.show()  # Shows the menu with the active menu point highlighted.
         if button1PressedEvent.is_set():  # Checks if event was fired.      
-            if selectedItem < lastElement:  # If the button is pressed (and the selected item is less than the number of elements)
+            if selectedItem < lastElement:  # If the button is pressed (and the selected item is less than the last element)
                 #then the selected item should be the next one.
                 selectedItem = selectedItem + 1
-                redrawNeeded = True  # Redraw is needed, otherwise the menu overwrites itself over and over again
-            else:
-                selectedItem = 0  # If the selected item is the last one, and you press push button 1, than the next selected item will be
-                #the first element.
+                redrawNeeded = True  # Redraw is needed, otherwise the menu overwrites itself over and over again.
+            else:  # If the selected item is the last one, and you press Push Button 1, the next selected item will be the first element.
+                selectedItem = 0 
                 redrawNeeded = True
         button1PressedEvent.clear()  # The event is marked as 'not set' via this function.
         if button2PressedEvent.is_set():  # Checks if the event was fired. 
@@ -125,27 +133,29 @@ def main_menu():
                     for j in range(0, numberOfElements):
                         if root[j].get('title')  == nextMenuItemToFind:
                             menuPage = j
-                            selectedItem = 0    # The first item on the list is selected.
+                            selectedItem = 0  # The first item on the list is selected.
                             redrawNeeded = True
                             break
-            else:  # If the last item is selected than displays the previous menu.
+            else:  # If the last item is selected the OLED displays the previous menu page.
                 selectedItem = menuPage - 1  # The selected item is the one which submenu was opened.
                 menuPage = 0
                 redrawNeeded = True  
-            if root[menuPage][selectedItem].text == '5. Power off':
+            if root[menuPage][selectedItem].text == '5. Power off':  # If the Power off is selected the os should shut down.
+                oled.fill(0)
+                oled.show()
                 os.system('sudo poweroff')                     
         button2PressedEvent.clear()  # The event is marked as 'not set' via this function.
 
 
         
-def  RunSelectedFunction():
+def RunSelectedFunction():
     """!Calls the functions.
 
     If the selected item's text in the current page is equal to the given string than runs the approriate function from a different module.
     This functions return a value, that's why this functions are defined as a variable which are also returned.  
     """
 
-    global currentTemp, currentHum, currentMoist
+    global currentTemp, currentHum, currentMoist, stateHum, stateMoist, runningHumiditySensor, runningMoistureSensor
     if root[menuPage][selectedItem].text == '2. Current temperature':
         currentTemp = get_TemperatureRecord()
         if currentTemp == -10000: 
@@ -161,6 +171,22 @@ def  RunSelectedFunction():
         if currentMoist == -10000: 
             currentMoist = 'N/A'
         return f'1. Sensor\n value: {currentMoist}'
+    elif root[menuPage][selectedItem].text == '1. Logging T/H':
+        if runningHumiditySensor == False:
+            runningHumiditySensor = True
+            stateHum = 'Activated'
+        else:
+            runningHumiditySensor = False
+            stateHum = 'Deactivated'
+        return f'1. {stateHum}'
+    elif root[menuPage][selectedItem].text == '1. Logging moisture':
+        if runningMoistureSensor == False:
+            runningMoistureSensor = True
+            stateMoist = 'Activated'
+        else:
+            runningMoistureSensor = False
+            stateMoist = 'Deactivated'
+        return f'1. {stateMoist}'
 
 
 async def async_task_manageButton1():
@@ -183,48 +209,30 @@ async def async_task_manageButton2():
 
 async def async_task_insert_HumidityRecords():
     """!Define a coroutine for inserting humidity records that takes in a future.
+
+    The humidity sensor collects and inserts records in case when is activated.
     """
 
+    #Global values
+    global runningHumiditySensor
     while True:
-        insert_HumidityRecords(device_name, date, temperature_f, temperature_c, humidity)
+        if runningHumiditySensor == True:
+            insert_HumidityRecords(device_name, date, temperature_f, temperature_c, humidity)
         await asyncio.sleep(T_LONG_SLEEP)
-
-
-async def async_task_get_HumidityRecord():
-    """!Define a coroutine for getting the last humidity record that takes in a future.
-    """
-
-    while True:
-        global currentHum
-        currentHum = get_HumidityRecord()
-        await asyncio.sleep(T_AMBIENT_LOGGING_SLEEP_VALUE)      
-
-
-async def async_task_get_TemperatureRecord():
-    """!Define a coroutine for getting the last temperature record that takes in a future.
-    """
-
-    while True:
-        currentTemp = get_TemperatureRecord()
-        await asyncio.sleep(T_AMBIENT_LOGGING_SLEEP_VALUE)
 
 
 async def async_task_insert_SoilMoistureRecords():
     """!Define a coroutine for inserting moisture records that takes in a future.
+
+    The moisture sensor collects and inserts records in case when is activated.
     """
 
+    #Global values
+    global runningMoistureSensor
     while True:
-        insert_SoilMoistureRecords(device_name, date, raw_value, percentage, classification)
+        if runningMoistureSensor == True:
+            insert_SoilMoistureRecords(device_name, date, raw_value, percentage, classification)
         await asyncio.sleep(T_LONG_SLEEP)
-
-
-async def async_task_get_SoilMoistureRecord():
-    """!Define a coroutine for getting the last moisture record that takes in a future.
-    """
-
-    while True:
-        get_SoilMoistureRecord()
-        await asyncio.sleep(T_SLEEP)
 
 
 async def async_task_manage_main_menu():
@@ -238,17 +246,12 @@ async def async_task_manage_main_menu():
 
 setup()
 
-## Define event loop
-loop = asyncio.get_event_loop()
 # Subsequently starts asyncio based event loop and have it run indefinitely until the program comes to an end
 try:
     asyncio.ensure_future(async_task_manageButton1())
     asyncio.ensure_future(async_task_manageButton2())
     asyncio.ensure_future(async_task_insert_HumidityRecords())
-    asyncio.ensure_future(async_task_get_HumidityRecord())
-    asyncio.ensure_future(async_task_get_TemperatureRecord())
     asyncio.ensure_future(async_task_insert_SoilMoistureRecords())
-    asyncio.ensure_future(async_task_get_SoilMoistureRecord())
     asyncio.ensure_future(async_task_manage_main_menu())
     loop.run_forever()
 except KeyboardInterrupt:
