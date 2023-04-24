@@ -1,34 +1,36 @@
 """!LED toggling.
-    In case the push buttons are pressed for at least 10ms the corresponding LED shall turned on or off.
+
+In case the push buttons are pressed for at least 50ms the corresponding LED shall turned on or off.
 """
 
 # Imports
 import RPi.GPIO as GPIO
+from time import sleep
 
 # Global Constants of the push buttons
-## Debounce counter initial value
+## Debounce counter initial value.
 T_DEBOUNCE_INIT_VALUE = 50  
-## Sleep time
-T_SLEEP = 5  
-## Counter was running and reached 0
+## Sleep time.
+T_SLEEP = 0.01  
+## Counter was running and reached 0.
 CNT_ELAPSED_VAL = 0  
-## Counter was stopped and is not running
+## Counter was stopped and is not running.
 CNT_STOPPED_VAL = 0xFFFF  
-## Initial values is assigned for the first push button's debounce counter 
+## Initial value is assigned for Push Button1's debounce counter. 
 debounce_counter1 = T_DEBOUNCE_INIT_VALUE
-## Initial values is assigned for the second push button's debounce counter 
+## Initial value is assigned for Push Button2's debounce counter. 
 debounce_counter2 = T_DEBOUNCE_INIT_VALUE
-## Push button 1 pin number.
+## Push Button1 pin number.
 PUSH_BUT1 = 16
-## Push button 2 pin number.
+## Push Button2 pin number.
 PUSH_BUT2 = 20  
-## LED 1 pin number.
+## LED1 pin number.
 LED1 = 26 
-## LED 2 pin number.
+## LED2 pin number.
 LED2 = 19  
-## LED1 is off.
+## LED1 state (turned off).
 led1_state = False 
-## LED2 is off
+## LED2 state (turned off).
 led2_state = False  
 
 
@@ -36,46 +38,46 @@ def setup():
     """!Setup the library to use board numbering.
 
     Uses the GPIO pin numbers instead of 'standard' pin numbers.
-    Initialize pin LED1 and LED2 as an output, and their initial value are set as low (LEDs are turned off).
-    Initialize pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
+    Initializes pin LED1 and LED2 as an output, and their initial value are set low (LEDs are turned off).
+    Initializes pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
     Instruct the Raspberry Pi to pull the pin high using the pull_up_down parameters.
     """
 
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)  # using the GPIO pin numbers instead of 'standard' pin numbers
-    GPIO.setup(LED1, GPIO.OUT, initial=GPIO.LOW)  # 26 and 19 pin is set as an output
-    GPIO.setup(LED2, GPIO.OUT, initial=GPIO.LOW)  # the two pins initial value is set to low (off)
-    GPIO.setup(PUSH_BUT1, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # GPIO  16, 20 is set as an input
-    GPIO.setup(PUSH_BUT2, GPIO.IN,
-               pull_up_down=GPIO.PUD_UP)  # the input pin initial value is HIGH, we use pull up resistor
-# pull up resistor: connect between a pin and VCC, with an open switch connected between pin and GND
-# pull up resistor keeps the input HIGH
+    GPIO.setwarnings(False)  # Disable warnings.
+    GPIO.setmode(GPIO.BCM)  # GPIO pin numbers.
+    GPIO.setup(LED1, GPIO.OUT, initial=GPIO.LOW)   
+    GPIO.setup(LED2, GPIO.OUT, initial=GPIO.LOW) 
+    GPIO.setup(PUSH_BUT1, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+    GPIO.setup(PUSH_BUT2, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+
+# The Push Buttons input pin's initial value rae HIGH, because we use pull up resistors.
+# Pull up resistor: the pin is connect to VCC, with an open switch connection between pin and GND.
+# Pull up resistor keeps the input HIGH
 
 
 def counter_running(counter):
     """!Counter is running.
 
-    @param counter   The debounce counter.
+    Runs as long as its not elapsed and stopped.
     """
 
-    if (counter != CNT_ELAPSED_VAL) and (counter != CNT_STOPPED_VAL):
+    if counter != CNT_ELAPSED_VAL and counter != CNT_STOPPED_VAL:
         return True
 
 
 def counter_elapsed(counter):
     """!Counter is elapsed.
 
-    @param counter   The debounce counter.
+    Counter is running and reached 0.
     """
 
-    return counter == CNT_ELAPSED_VAL
+    return counter == CNT_ELAPSED_VAL   
 
 
 def start_counter(counter, init_value):
     """!Starts counter.
 
-    @param counter   The debounce counter.
-    @param init_values   The debounce counter.
+    Assigns a value for the counter and starts to count.
     """
 
     counter = init_value
@@ -85,7 +87,7 @@ def start_counter(counter, init_value):
 def stop_counter(counter):
     """!Counter stops.
 
-    @param counter   The debounce counter
+    Counter reached 0 and stops running.
     """
     
     counter = CNT_STOPPED_VAL
@@ -99,19 +101,19 @@ def manage_but1():
     """
 
     global debounce_counter1, led1_state
-    if GPIO.input(PUSH_BUT1) == 0:  # Push Button is pressed
-        if counter_running(debounce_counter1):  # The counter starts to running down
+    if GPIO.input(PUSH_BUT1) == 0:  # Push Button is pressed.
+        if counter_running(debounce_counter1):  # The counter starts to running down.
             debounce_counter1 = debounce_counter1 - 1
-        elif counter_elapsed(debounce_counter1): 
-            debounce_counter1 = stop_counter(debounce_counter1)
-            if led1_state == False:
+        elif counter_elapsed(debounce_counter1):  # When the counter reaches 0 it will stop.  
+            debounce_counter1 = stop_counter(debounce_counter1)  # And the counter value will be 0.
+            if led1_state == False:  # If the LED is off then it will turned on.
                 GPIO.output(LED1, GPIO.HIGH)
                 led1_state = True
-            elif led1_state == True:
+            elif led1_state == True:  # Othervise it will turned off.
                 GPIO.output(LED1, GPIO.LOW)
                 led1_state = False
     else:
-        debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  
+        debounce_counter1 = start_counter(debounce_counter1, T_DEBOUNCE_INIT_VALUE)  # If you depressed the Push Buton the counter will start again.  
 
 def manage_but2():
     """! Turns ON and OFF LED2.
@@ -139,3 +141,4 @@ setup()
 while True:
     manage_but1()
     manage_but2()
+    sleep(T_SLEEP)
