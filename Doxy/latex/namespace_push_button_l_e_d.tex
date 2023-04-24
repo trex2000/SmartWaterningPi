@@ -1,48 +1,265 @@
 \hypertarget{namespace_push_button_l_e_d}{}\doxysection{Push\+Button\+LED Namespace Reference}
 \label{namespace_push_button_l_e_d}\index{PushButtonLED@{PushButtonLED}}
+
+
+LED toggling.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_a4875d22aca76f28a9627d96957f93289}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the library to use board numbering. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_a699bcb7d1a1f7f459250e6be315543d9}{counter\+\_\+running}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter is running. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_a6dba6b6bc4abce0001e3d4403113b8c5}{counter\+\_\+elapsed}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter is elapsed. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_a5e0585e1b35e51266dbbf03234df21d3}{start\+\_\+counter}} (counter, init\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Starts counter. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_aa2de7c5cd5d44528e1251ac6d74c88d8}{stop\+\_\+counter}} (counter)
+\begin{DoxyCompactList}\small\item\em Counter stops. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_af129db7fccb4c13eb32d96b59a0e5405}{manage\+\_\+but1}} ()
+\begin{DoxyCompactList}\small\item\em Turns ON and OFF LED1. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_push_button_l_e_d_ae97946b4b3afa4e4efb225b70d8c5c5d}{manage\+\_\+but2}} ()
+\begin{DoxyCompactList}\small\item\em Turns ON and OFF LED2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_push_button_l_e_d_ace8760d94012a2a3470476f17db183d4}{OUT}}
-\item 
-\mbox{\hyperlink{namespace_push_button_l_e_d_af044363bfb913837207ef544470fe247}{initial}}
-\item 
-\mbox{\hyperlink{namespace_push_button_l_e_d_a2202cd1e23e3f1195e2df58808f5f884}{IN}}
-\item 
-\mbox{\hyperlink{namespace_push_button_l_e_d_a7ee56df5106f11a050e04efbfd12a22b}{pull\+\_\+up\+\_\+down}}
-\item 
-\mbox{\hyperlink{namespace_push_button_l_e_d_aa77150eba6b9508aef02ee94bbc36123}{else}} \+:
-\end{DoxyCompactItemize}
+int \mbox{\hyperlink{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}} = 50
+\begin{DoxyCompactList}\small\item\em Debounce counter initial value. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespace_push_button_l_e_d_a90df147dc35410e534e7e96b2f546d0b}{T\+\_\+\+SLEEP}} = 0.\+01
+\begin{DoxyCompactList}\small\item\em Sleep time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_a1d3617400033e7d4d7043f0598818cb8}{CNT\+\_\+\+ELAPSED\+\_\+\+VAL}} = 0
+\begin{DoxyCompactList}\small\item\em Counter was running and reached 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_a598b6c0b3494860fe765b332f1d506bb}{CNT\+\_\+\+STOPPED\+\_\+\+VAL}} = 0x\+FFFF
+\begin{DoxyCompactList}\small\item\em Counter was stopped and is not running. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_add468134b5fc2e96443c4be84c86494a}{debounce\+\_\+counter1}} = \mbox{\hyperlink{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}
+\begin{DoxyCompactList}\small\item\em Initial value is assigned for Push Button1\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_a6fc2b260680a5ea03cb97dd0aa85cd9e}{debounce\+\_\+counter2}} = \mbox{\hyperlink{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}
+\begin{DoxyCompactList}\small\item\em Initial value is assigned for Push Button2\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_ac4ab0ccf3614a609981f2054ce4ba956}{PUSH\+\_\+\+BUT1}} = 16
+\begin{DoxyCompactList}\small\item\em Push Button1 pin number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_ae67337db76fbfeb3336d52ede8f925d1}{PUSH\+\_\+\+BUT2}} = 20
+\begin{DoxyCompactList}\small\item\em Push Button2 pin number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_aab62d880dbfda4999f23adbe838a5cb7}{LED1}} = 26
+\begin{DoxyCompactList}\small\item\em LED1 pin number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_push_button_l_e_d_aad0a4dc4982da5b534b3b14abeaa32b4}{LED2}} = 19
+\begin{DoxyCompactList}\small\item\em LED2 pin number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_push_button_l_e_d_a2b296f2dcceca898827a69094189498f}{led1\+\_\+state}} = False
+\begin{DoxyCompactList}\small\item\em LED1 state (turned off). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespace_push_button_l_e_d_a0f80c81dce9f40a7d09ff6c048a83341}{led2\+\_\+state}} = False
+\begin{DoxyCompactList}\small\item\em LED2 state (turned off). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+LED toggling. 
+
+In case the push buttons are pressed for at least 50ms the corresponding LED shall turned on or off. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a6dba6b6bc4abce0001e3d4403113b8c5}\label{namespace_push_button_l_e_d_a6dba6b6bc4abce0001e3d4403113b8c5}} 
+\index{PushButtonLED@{PushButtonLED}!counter\_elapsed@{counter\_elapsed}}
+\index{counter\_elapsed@{counter\_elapsed}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{counter\_elapsed()}{counter\_elapsed()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+counter\+\_\+elapsed (\begin{DoxyParamCaption}\item[{}]{counter }\end{DoxyParamCaption})}
+
+
+
+Counter is elapsed. 
+
+\begin{DoxyVerb}Counter is running and reached 0.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_push_button_l_e_d_a699bcb7d1a1f7f459250e6be315543d9}\label{namespace_push_button_l_e_d_a699bcb7d1a1f7f459250e6be315543d9}} 
+\index{PushButtonLED@{PushButtonLED}!counter\_running@{counter\_running}}
+\index{counter\_running@{counter\_running}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{counter\_running()}{counter\_running()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+counter\+\_\+running (\begin{DoxyParamCaption}\item[{}]{counter }\end{DoxyParamCaption})}
+
+
+
+Counter is running. 
+
+\begin{DoxyVerb}Runs as long as its not elapsed and stopped.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_push_button_l_e_d_af129db7fccb4c13eb32d96b59a0e5405}\label{namespace_push_button_l_e_d_af129db7fccb4c13eb32d96b59a0e5405}} 
+\index{PushButtonLED@{PushButtonLED}!manage\_but1@{manage\_but1}}
+\index{manage\_but1@{manage\_but1}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{manage\_but1()}{manage\_but1()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+manage\+\_\+but1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Turns ON and OFF LED1. 
+
+The push button is debounced when the button is pressed for 10ms and the LED turns ON if it was off and vice-\/versa. \mbox{\Hypertarget{namespace_push_button_l_e_d_ae97946b4b3afa4e4efb225b70d8c5c5d}\label{namespace_push_button_l_e_d_ae97946b4b3afa4e4efb225b70d8c5c5d}} 
+\index{PushButtonLED@{PushButtonLED}!manage\_but2@{manage\_but2}}
+\index{manage\_but2@{manage\_but2}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{manage\_but2()}{manage\_but2()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+manage\+\_\+but2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Turns ON and OFF LED2. 
+
+The push button is debounced when the button is pressed for 10ms and the LED turns ON if it was off and vice-\/versa. \mbox{\Hypertarget{namespace_push_button_l_e_d_a4875d22aca76f28a9627d96957f93289}\label{namespace_push_button_l_e_d_a4875d22aca76f28a9627d96957f93289}} 
+\index{PushButtonLED@{PushButtonLED}!setup@{setup}}
+\index{setup@{setup}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the library to use board numbering. 
+
+\begin{DoxyVerb}Uses the GPIO pin numbers instead of 'standard' pin numbers.
+Initializes pin LED1 and LED2 as an output, and their initial value are set low (LEDs are turned off).
+Initializes pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
+Instruct the Raspberry Pi to pull the pin high using the pull_up_down parameters.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_push_button_l_e_d_a5e0585e1b35e51266dbbf03234df21d3}\label{namespace_push_button_l_e_d_a5e0585e1b35e51266dbbf03234df21d3}} 
+\index{PushButtonLED@{PushButtonLED}!start\_counter@{start\_counter}}
+\index{start\_counter@{start\_counter}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{start\_counter()}{start\_counter()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+start\+\_\+counter (\begin{DoxyParamCaption}\item[{}]{counter,  }\item[{}]{init\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Starts counter. 
+
+\begin{DoxyVerb}Assigns a value for the counter and starts to count.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_push_button_l_e_d_aa2de7c5cd5d44528e1251ac6d74c88d8}\label{namespace_push_button_l_e_d_aa2de7c5cd5d44528e1251ac6d74c88d8}} 
+\index{PushButtonLED@{PushButtonLED}!stop\_counter@{stop\_counter}}
+\index{stop\_counter@{stop\_counter}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{stop\_counter()}{stop\_counter()}}
+{\footnotesize\ttfamily def Push\+Button\+LED.\+stop\+\_\+counter (\begin{DoxyParamCaption}\item[{}]{counter }\end{DoxyParamCaption})}
+
+
+
+Counter stops. 
+
+\begin{DoxyVerb}Counter reached 0 and stops running.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespace_push_button_l_e_d_aa77150eba6b9508aef02ee94bbc36123}\label{namespace_push_button_l_e_d_aa77150eba6b9508aef02ee94bbc36123}} 
-\index{PushButtonLED@{PushButtonLED}!else@{else}}
-\index{else@{else}!PushButtonLED@{PushButtonLED}}
-\doxysubsubsection{\texorpdfstring{else}{else}}
-{\footnotesize\ttfamily Push\+Button\+LED.\+else \+:}
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a1d3617400033e7d4d7043f0598818cb8}\label{namespace_push_button_l_e_d_a1d3617400033e7d4d7043f0598818cb8}} 
+\index{PushButtonLED@{PushButtonLED}!CNT\_ELAPSED\_VAL@{CNT\_ELAPSED\_VAL}}
+\index{CNT\_ELAPSED\_VAL@{CNT\_ELAPSED\_VAL}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{CNT\_ELAPSED\_VAL}{CNT\_ELAPSED\_VAL}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+CNT\+\_\+\+ELAPSED\+\_\+\+VAL = 0}
 
-\mbox{\Hypertarget{namespace_push_button_l_e_d_a2202cd1e23e3f1195e2df58808f5f884}\label{namespace_push_button_l_e_d_a2202cd1e23e3f1195e2df58808f5f884}} 
-\index{PushButtonLED@{PushButtonLED}!IN@{IN}}
-\index{IN@{IN}!PushButtonLED@{PushButtonLED}}
-\doxysubsubsection{\texorpdfstring{IN}{IN}}
-{\footnotesize\ttfamily Push\+Button\+LED.\+IN}
 
-\mbox{\Hypertarget{namespace_push_button_l_e_d_af044363bfb913837207ef544470fe247}\label{namespace_push_button_l_e_d_af044363bfb913837207ef544470fe247}} 
-\index{PushButtonLED@{PushButtonLED}!initial@{initial}}
-\index{initial@{initial}!PushButtonLED@{PushButtonLED}}
-\doxysubsubsection{\texorpdfstring{initial}{initial}}
-{\footnotesize\ttfamily Push\+Button\+LED.\+initial}
 
-\mbox{\Hypertarget{namespace_push_button_l_e_d_ace8760d94012a2a3470476f17db183d4}\label{namespace_push_button_l_e_d_ace8760d94012a2a3470476f17db183d4}} 
-\index{PushButtonLED@{PushButtonLED}!OUT@{OUT}}
-\index{OUT@{OUT}!PushButtonLED@{PushButtonLED}}
-\doxysubsubsection{\texorpdfstring{OUT}{OUT}}
-{\footnotesize\ttfamily Push\+Button\+LED.\+OUT}
+Counter was running and reached 0. 
 
-\mbox{\Hypertarget{namespace_push_button_l_e_d_a7ee56df5106f11a050e04efbfd12a22b}\label{namespace_push_button_l_e_d_a7ee56df5106f11a050e04efbfd12a22b}} 
-\index{PushButtonLED@{PushButtonLED}!pull\_up\_down@{pull\_up\_down}}
-\index{pull\_up\_down@{pull\_up\_down}!PushButtonLED@{PushButtonLED}}
-\doxysubsubsection{\texorpdfstring{pull\_up\_down}{pull\_up\_down}}
-{\footnotesize\ttfamily Push\+Button\+LED.\+pull\+\_\+up\+\_\+down}
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a598b6c0b3494860fe765b332f1d506bb}\label{namespace_push_button_l_e_d_a598b6c0b3494860fe765b332f1d506bb}} 
+\index{PushButtonLED@{PushButtonLED}!CNT\_STOPPED\_VAL@{CNT\_STOPPED\_VAL}}
+\index{CNT\_STOPPED\_VAL@{CNT\_STOPPED\_VAL}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{CNT\_STOPPED\_VAL}{CNT\_STOPPED\_VAL}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+CNT\+\_\+\+STOPPED\+\_\+\+VAL = 0x\+FFFF}
+
+
+
+Counter was stopped and is not running. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_add468134b5fc2e96443c4be84c86494a}\label{namespace_push_button_l_e_d_add468134b5fc2e96443c4be84c86494a}} 
+\index{PushButtonLED@{PushButtonLED}!debounce\_counter1@{debounce\_counter1}}
+\index{debounce\_counter1@{debounce\_counter1}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{debounce\_counter1}{debounce\_counter1}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+debounce\+\_\+counter1 = \mbox{\hyperlink{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}}
+
+
+
+Initial value is assigned for Push Button1\textquotesingle{}s debounce counter. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a6fc2b260680a5ea03cb97dd0aa85cd9e}\label{namespace_push_button_l_e_d_a6fc2b260680a5ea03cb97dd0aa85cd9e}} 
+\index{PushButtonLED@{PushButtonLED}!debounce\_counter2@{debounce\_counter2}}
+\index{debounce\_counter2@{debounce\_counter2}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{debounce\_counter2}{debounce\_counter2}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+debounce\+\_\+counter2 = \mbox{\hyperlink{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}}
+
+
+
+Initial value is assigned for Push Button2\textquotesingle{}s debounce counter. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_aab62d880dbfda4999f23adbe838a5cb7}\label{namespace_push_button_l_e_d_aab62d880dbfda4999f23adbe838a5cb7}} 
+\index{PushButtonLED@{PushButtonLED}!LED1@{LED1}}
+\index{LED1@{LED1}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{LED1}{LED1}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+LED1 = 26}
+
+
+
+LED1 pin number. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a2b296f2dcceca898827a69094189498f}\label{namespace_push_button_l_e_d_a2b296f2dcceca898827a69094189498f}} 
+\index{PushButtonLED@{PushButtonLED}!led1\_state@{led1\_state}}
+\index{led1\_state@{led1\_state}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{led1\_state}{led1\_state}}
+{\footnotesize\ttfamily bool Push\+Button\+LED.\+led1\+\_\+state = False}
+
+
+
+LED1 state (turned off). 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_aad0a4dc4982da5b534b3b14abeaa32b4}\label{namespace_push_button_l_e_d_aad0a4dc4982da5b534b3b14abeaa32b4}} 
+\index{PushButtonLED@{PushButtonLED}!LED2@{LED2}}
+\index{LED2@{LED2}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{LED2}{LED2}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+LED2 = 19}
+
+
+
+LED2 pin number. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a0f80c81dce9f40a7d09ff6c048a83341}\label{namespace_push_button_l_e_d_a0f80c81dce9f40a7d09ff6c048a83341}} 
+\index{PushButtonLED@{PushButtonLED}!led2\_state@{led2\_state}}
+\index{led2\_state@{led2\_state}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{led2\_state}{led2\_state}}
+{\footnotesize\ttfamily bool Push\+Button\+LED.\+led2\+\_\+state = False}
+
+
+
+LED2 state (turned off). 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_ac4ab0ccf3614a609981f2054ce4ba956}\label{namespace_push_button_l_e_d_ac4ab0ccf3614a609981f2054ce4ba956}} 
+\index{PushButtonLED@{PushButtonLED}!PUSH\_BUT1@{PUSH\_BUT1}}
+\index{PUSH\_BUT1@{PUSH\_BUT1}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{PUSH\_BUT1}{PUSH\_BUT1}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+PUSH\+\_\+\+BUT1 = 16}
+
+
+
+Push Button1 pin number. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_ae67337db76fbfeb3336d52ede8f925d1}\label{namespace_push_button_l_e_d_ae67337db76fbfeb3336d52ede8f925d1}} 
+\index{PushButtonLED@{PushButtonLED}!PUSH\_BUT2@{PUSH\_BUT2}}
+\index{PUSH\_BUT2@{PUSH\_BUT2}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{PUSH\_BUT2}{PUSH\_BUT2}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+PUSH\+\_\+\+BUT2 = 20}
+
+
+
+Push Button2 pin number. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}\label{namespace_push_button_l_e_d_a312ff025ee447af50194dbb0f0d65169}} 
+\index{PushButtonLED@{PushButtonLED}!T\_DEBOUNCE\_INIT\_VALUE@{T\_DEBOUNCE\_INIT\_VALUE}}
+\index{T\_DEBOUNCE\_INIT\_VALUE@{T\_DEBOUNCE\_INIT\_VALUE}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{T\_DEBOUNCE\_INIT\_VALUE}{T\_DEBOUNCE\_INIT\_VALUE}}
+{\footnotesize\ttfamily int Push\+Button\+LED.\+T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE = 50}
+
+
+
+Debounce counter initial value. 
+
+\mbox{\Hypertarget{namespace_push_button_l_e_d_a90df147dc35410e534e7e96b2f546d0b}\label{namespace_push_button_l_e_d_a90df147dc35410e534e7e96b2f546d0b}} 
+\index{PushButtonLED@{PushButtonLED}!T\_SLEEP@{T\_SLEEP}}
+\index{T\_SLEEP@{T\_SLEEP}!PushButtonLED@{PushButtonLED}}
+\doxysubsubsection{\texorpdfstring{T\_SLEEP}{T\_SLEEP}}
+{\footnotesize\ttfamily float Push\+Button\+LED.\+T\+\_\+\+SLEEP = 0.\+01}
+
+
+
+Sleep time. 
 

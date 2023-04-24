@@ -1,39 +1,61 @@
 \hypertarget{namespace_d_c___motor}{}\doxysection{DC\+\_\+\+Motor Namespace Reference}
 \label{namespace_d_c___motor}\index{DC\_Motor@{DC\_Motor}}
+
+
+Turns on the DC motor.  
+
+
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+def \mbox{\hyperlink{namespace_d_c___motor_a48cadc5e009cde823ff762bbba3ca8d6}{DCmotor\+\_\+setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the library to use board numbering. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_d_c___motor_a740bc54507f303c0535b1a4c886e4018}{run\+\_\+forward}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em The motor spins forward. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_d_c___motor_a7cb9716af3079eefe9fb53a3aa5e543b}{run\+\_\+backward}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The motor spins backward. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{namespace_d_c___motor_ac8385cfc8e0dc30c172b8b51ba931d04}{IN1}} = 17
-\item 
+\begin{DoxyCompactList}\small\item\em Input one that controls the H-\/bridge. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_d_c___motor_a521dd2d95af2b6c6ca71cb8b2736c98d}{IN2}} = 27
-\item 
+\begin{DoxyCompactList}\small\item\em Input two that controls the H-\/bridge. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_d_c___motor_a4111c99b11d92d92b1041137062526b0}{ENA}} = 13
-\item 
-\mbox{\hyperlink{namespace_d_c___motor_ac58d5123638d1659c65706f8f4e409a1}{OUT}}
-\item 
-\mbox{\hyperlink{namespace_d_c___motor_a04de8eee760bf6ab37d52667d22e49b0}{initial}}
-\item 
-GPIO \mbox{\hyperlink{namespace_d_c___motor_a9bf1771d0b3d3d8414a5aa2b7ecef8f3}{pwm}} = GPIO.\+PWM(\mbox{\hyperlink{namespace_d_c___motor_a4111c99b11d92d92b1041137062526b0}{ENA}}, 1000)
-\item 
+\begin{DoxyCompactList}\small\item\em Input for motor A that controls the PWM. \end{DoxyCompactList}\item 
 input \mbox{\hyperlink{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}{answer}} = input(\textquotesingle{}To run the motor forward press \char`\"{}r\char`\"{}.\textbackslash{}n To tun the motor backward press \char`\"{}b\char`\"{}.\textquotesingle{})
-\item 
+\begin{DoxyCompactList}\small\item\em Input the answer. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespace_d_c___motor_a16438218e84bf4f670f2781ea07c0ba9}{else}} \+:
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Turns on the DC motor. 
+
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespace_d_c___motor_a7cb9716af3079eefe9fb53a3aa5e543b}\label{namespace_d_c___motor_a7cb9716af3079eefe9fb53a3aa5e543b}} 
+\mbox{\Hypertarget{namespace_d_c___motor_a48cadc5e009cde823ff762bbba3ca8d6}\label{namespace_d_c___motor_a48cadc5e009cde823ff762bbba3ca8d6}} 
+\index{DC\_Motor@{DC\_Motor}!DCmotor\_setup@{DCmotor\_setup}}
+\index{DCmotor\_setup@{DCmotor\_setup}!DC\_Motor@{DC\_Motor}}
+\doxysubsubsection{\texorpdfstring{DCmotor\_setup()}{DCmotor\_setup()}}
+{\footnotesize\ttfamily def DC\+\_\+\+Motor.\+DCmotor\+\_\+setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the library to use board numbering. 
+
+\begin{DoxyVerb}Uses the GPIO pin numbers instead of 'standard' pin numbers.
+Initializes the IN1 and IN2, which controls the spining direction, their initial value is set low.
+Initializes the ENA output, which controls the speed.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_d_c___motor_a7cb9716af3079eefe9fb53a3aa5e543b}\label{namespace_d_c___motor_a7cb9716af3079eefe9fb53a3aa5e543b}} 
 \index{DC\_Motor@{DC\_Motor}!run\_backward@{run\_backward}}
 \index{run\_backward@{run\_backward}!DC\_Motor@{DC\_Motor}}
 \doxysubsubsection{\texorpdfstring{run\_backward()}{run\_backward()}}
 {\footnotesize\ttfamily def DC\+\_\+\+Motor.\+run\+\_\+backward (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The motor spins backward. 
 
 \mbox{\Hypertarget{namespace_d_c___motor_a740bc54507f303c0535b1a4c886e4018}\label{namespace_d_c___motor_a740bc54507f303c0535b1a4c886e4018}} 
 \index{DC\_Motor@{DC\_Motor}!run\_forward@{run\_forward}}
@@ -43,12 +65,20 @@ input \mbox{\hyperlink{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}{
 
 
 
+The motor spins forward. 
+
+
+
 \doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}\label{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}} 
 \index{DC\_Motor@{DC\_Motor}!answer@{answer}}
 \index{answer@{answer}!DC\_Motor@{DC\_Motor}}
 \doxysubsubsection{\texorpdfstring{answer}{answer}}
 {\footnotesize\ttfamily input DC\+\_\+\+Motor.\+answer = input(\textquotesingle{}To run the motor forward press \char`\"{}r\char`\"{}.\textbackslash{}n To tun the motor backward press \char`\"{}b\char`\"{}.\textquotesingle{})}
+
+
+
+Input the answer. 
 
 \mbox{\Hypertarget{namespace_d_c___motor_a16438218e84bf4f670f2781ea07c0ba9}\label{namespace_d_c___motor_a16438218e84bf4f670f2781ea07c0ba9}} 
 \index{DC\_Motor@{DC\_Motor}!else@{else}}
@@ -62,11 +92,19 @@ input \mbox{\hyperlink{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}{
 \doxysubsubsection{\texorpdfstring{ENA}{ENA}}
 {\footnotesize\ttfamily int DC\+\_\+\+Motor.\+ENA = 13}
 
+
+
+Input for motor A that controls the PWM. 
+
 \mbox{\Hypertarget{namespace_d_c___motor_ac8385cfc8e0dc30c172b8b51ba931d04}\label{namespace_d_c___motor_ac8385cfc8e0dc30c172b8b51ba931d04}} 
 \index{DC\_Motor@{DC\_Motor}!IN1@{IN1}}
 \index{IN1@{IN1}!DC\_Motor@{DC\_Motor}}
 \doxysubsubsection{\texorpdfstring{IN1}{IN1}}
 {\footnotesize\ttfamily int DC\+\_\+\+Motor.\+IN1 = 17}
+
+
+
+Input one that controls the H-\/bridge. 
 
 \mbox{\Hypertarget{namespace_d_c___motor_a521dd2d95af2b6c6ca71cb8b2736c98d}\label{namespace_d_c___motor_a521dd2d95af2b6c6ca71cb8b2736c98d}} 
 \index{DC\_Motor@{DC\_Motor}!IN2@{IN2}}
@@ -74,21 +112,7 @@ input \mbox{\hyperlink{namespace_d_c___motor_aca4b0293b646b41e3406b24e133b03cc}{
 \doxysubsubsection{\texorpdfstring{IN2}{IN2}}
 {\footnotesize\ttfamily int DC\+\_\+\+Motor.\+IN2 = 27}
 
-\mbox{\Hypertarget{namespace_d_c___motor_a04de8eee760bf6ab37d52667d22e49b0}\label{namespace_d_c___motor_a04de8eee760bf6ab37d52667d22e49b0}} 
-\index{DC\_Motor@{DC\_Motor}!initial@{initial}}
-\index{initial@{initial}!DC\_Motor@{DC\_Motor}}
-\doxysubsubsection{\texorpdfstring{initial}{initial}}
-{\footnotesize\ttfamily DC\+\_\+\+Motor.\+initial}
 
-\mbox{\Hypertarget{namespace_d_c___motor_ac58d5123638d1659c65706f8f4e409a1}\label{namespace_d_c___motor_ac58d5123638d1659c65706f8f4e409a1}} 
-\index{DC\_Motor@{DC\_Motor}!OUT@{OUT}}
-\index{OUT@{OUT}!DC\_Motor@{DC\_Motor}}
-\doxysubsubsection{\texorpdfstring{OUT}{OUT}}
-{\footnotesize\ttfamily DC\+\_\+\+Motor.\+OUT}
 
-\mbox{\Hypertarget{namespace_d_c___motor_a9bf1771d0b3d3d8414a5aa2b7ecef8f3}\label{namespace_d_c___motor_a9bf1771d0b3d3d8414a5aa2b7ecef8f3}} 
-\index{DC\_Motor@{DC\_Motor}!pwm@{pwm}}
-\index{pwm@{pwm}!DC\_Motor@{DC\_Motor}}
-\doxysubsubsection{\texorpdfstring{pwm}{pwm}}
-{\footnotesize\ttfamily GPIO DC\+\_\+\+Motor.\+pwm = GPIO.\+PWM(\mbox{\hyperlink{namespace_d_c___motor_a4111c99b11d92d92b1041137062526b0}{ENA}}, 1000)}
+Input two that controls the H-\/bridge. 
 

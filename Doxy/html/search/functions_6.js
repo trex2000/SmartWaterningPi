@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['setup_0',['setup',['../namespace_menu_display.html#a3b7343c2bbd5d40a99c056abce94291f',1,'MenuDisplay']]],
-  ['setup_5fbutton_1',['setup_button',['../namespace_push_button.html#a021950af2e60cfdc83029af2ad2706c3',1,'PushButton']]],
-  ['start_5fcounter_2',['start_counter',['../namespace_push_button.html#aacb8a239528f44ee93742af13e91fe05',1,'PushButton']]],
-  ['stop_5fcounter_3',['stop_counter',['../namespace_push_button.html#ac5342b66954a137c2d46ca410e354e86',1,'PushButton']]]
+  ['run_5fbackward_0',['run_backward',['../namespace_d_c___motor.html#a7cb9716af3079eefe9fb53a3aa5e543b',1,'DC_Motor']]],
+  ['run_5fforward_1',['run_forward',['../namespace_d_c___motor.html#a740bc54507f303c0535b1a4c886e4018',1,'DC_Motor']]],
+  ['runselectedfunction_2',['RunSelectedFunction',['../namespace_menu_display.html#a2309dbff6282e23bff55bcea6412bbb0',1,'MenuDisplay']]]
 ];

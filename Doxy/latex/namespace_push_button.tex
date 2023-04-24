@@ -19,9 +19,9 @@ def \mbox{\hyperlink{namespace_push_button_aacb8a239528f44ee93742af13e91fe05}{st
 def \mbox{\hyperlink{namespace_push_button_ac5342b66954a137c2d46ca410e354e86}{stop\+\_\+counter}} (counter)
 \begin{DoxyCompactList}\small\item\em Counter stops. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_push_button_a578fe5ee24b1f3c69d3e89c5c9c6dd92}{manage\+\_\+but1}} ()
-\begin{DoxyCompactList}\small\item\em Debounces push button 1. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Debounces Push Button1. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}{manage\+\_\+but2}} ()
-\begin{DoxyCompactList}\small\item\em Debounces push button 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Debounces Push Button2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,17 +34,17 @@ int \mbox{\hyperlink{namespace_push_button_ae9691eb0bfd729df9445eae4eb5fba84}{CN
 int \mbox{\hyperlink{namespace_push_button_a5b8fda219a0e989526c9940c21cac04f}{CNT\+\_\+\+STOPPED\+\_\+\+VAL}} = 0x\+FFFF
 \begin{DoxyCompactList}\small\item\em Counter was stopped and is not running. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_push_button_ada75d95e86e71068f1cf432e18d2ba60}{PUSH\+\_\+\+BUT1}} = 16
-\begin{DoxyCompactList}\small\item\em Push button 1 pin number. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Push Button 1 pin number. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_push_button_a8e7ec98d113d98ccf37eb7ec20b454f9}{PUSH\+\_\+\+BUT2}} = 20
-\begin{DoxyCompactList}\small\item\em Push button 2 pin number. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Push Button 2 pin number. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_push_button_afe2a5115883a08a1d917798db5d23f03}{debounce\+\_\+counter1}} = \mbox{\hyperlink{namespace_push_button_ab110a500aa8e6f578f55fab03566d941}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}
-\begin{DoxyCompactList}\small\item\em Initial values is assigned for the first push button\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initial value is assigned for Push Button1\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{namespace_push_button_a74cbb224f63bd3dc0ce083c6d5b66bbb}{debounce\+\_\+counter2}} = \mbox{\hyperlink{namespace_push_button_ab110a500aa8e6f578f55fab03566d941}{T\+\_\+\+DEBOUNCE\+\_\+\+INIT\+\_\+\+VALUE}}
-\begin{DoxyCompactList}\small\item\em Initial values is assigned for the second push button\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initial value is assigned for Push Button3\textquotesingle{}s debounce counter. \end{DoxyCompactList}\item 
 asyncio \mbox{\hyperlink{namespace_push_button_ad45511f80f36c6cafed730dede041475}{button1\+Pressed\+Event}} = asyncio.\+Event()
-\begin{DoxyCompactList}\small\item\em Defined an event for the first push button\textquotesingle{}s debounced state. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Defined an event for Push Button1\textquotesingle{}s debounced state. \end{DoxyCompactList}\item 
 asyncio \mbox{\hyperlink{namespace_push_button_a236d75f8bf79f2be863fab6928288143}{button2\+Pressed\+Event}} = asyncio.\+Event()
-\begin{DoxyCompactList}\small\item\em Defined an event for the second push button\textquotesingle{}s debounced state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Defined an event for Push Button2\textquotesingle{}s debounced state. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -63,7 +63,7 @@ In case the push buttons are pressed for at least 10ms an event is defined.
 
 Counter is elapsed. 
 
-\begin{DoxyVerb}@param counter   The debounce counter.
+\begin{DoxyVerb}Counter is running and reached 0.
 \end{DoxyVerb}
  \mbox{\Hypertarget{namespace_push_button_ad4c31d4ae9cb17da86358761f8b61818}\label{namespace_push_button_ad4c31d4ae9cb17da86358761f8b61818}} 
 \index{PushButton@{PushButton}!counter\_running@{counter\_running}}
@@ -75,7 +75,7 @@ Counter is elapsed.
 
 Counter is running. 
 
-\begin{DoxyVerb}@param counter   The debounce counter.
+\begin{DoxyVerb}Running as long as its elapsed AND stopped.
 \end{DoxyVerb}
  \mbox{\Hypertarget{namespace_push_button_a578fe5ee24b1f3c69d3e89c5c9c6dd92}\label{namespace_push_button_a578fe5ee24b1f3c69d3e89c5c9c6dd92}} 
 \index{PushButton@{PushButton}!manage\_but1@{manage\_but1}}
@@ -85,9 +85,9 @@ Counter is running.
 
 
 
-Debounces push button 1. 
+Debounces Push Button1. 
 
-The push button is debounced when the button is pressed for 10ms. \mbox{\Hypertarget{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}\label{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}} 
+Push Button1 is debounced when the button is pressed for 10ms. \mbox{\Hypertarget{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}\label{namespace_push_button_ae4a1aed8f2b6332315a6a143316cef38}} 
 \index{PushButton@{PushButton}!manage\_but2@{manage\_but2}}
 \index{manage\_but2@{manage\_but2}!PushButton@{PushButton}}
 \doxysubsubsection{\texorpdfstring{manage\_but2()}{manage\_but2()}}
@@ -95,9 +95,9 @@ The push button is debounced when the button is pressed for 10ms. \mbox{\Hyperta
 
 
 
-Debounces push button 2. 
+Debounces Push Button2. 
 
-The push button is debounced when the button is pressed for 10ms. \mbox{\Hypertarget{namespace_push_button_a021950af2e60cfdc83029af2ad2706c3}\label{namespace_push_button_a021950af2e60cfdc83029af2ad2706c3}} 
+Push Button2 is debounced when the button is pressed for 10ms. \mbox{\Hypertarget{namespace_push_button_a021950af2e60cfdc83029af2ad2706c3}\label{namespace_push_button_a021950af2e60cfdc83029af2ad2706c3}} 
 \index{PushButton@{PushButton}!setup\_button@{setup\_button}}
 \index{setup\_button@{setup\_button}!PushButton@{PushButton}}
 \doxysubsubsection{\texorpdfstring{setup\_button()}{setup\_button()}}
@@ -107,7 +107,8 @@ The push button is debounced when the button is pressed for 10ms. \mbox{\Hyperta
 
 Setup the library to use board numbering. 
 
-\begin{DoxyVerb}Uses the GPIO pin numbers instead of 'standard' pin numbers, initialize pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
+\begin{DoxyVerb}Uses the GPIO pin numbers instead of 'standard' pin numbers.
+Initializes pin PUSH_BUT1, PUSH_BUT2 as an input pin. 
 Instruct the Raspberry Pi to pull the pin high using the pull_up_down parameters.
 \end{DoxyVerb}
  \mbox{\Hypertarget{namespace_push_button_aacb8a239528f44ee93742af13e91fe05}\label{namespace_push_button_aacb8a239528f44ee93742af13e91fe05}} 
@@ -120,8 +121,7 @@ Instruct the Raspberry Pi to pull the pin high using the pull_up_down parameters
 
 Starts counter. 
 
-\begin{DoxyVerb}@param counter   The debounce counter.
-@param init_values   The debounce counter.
+\begin{DoxyVerb}Assigns a value for the counter and starts to count.
 \end{DoxyVerb}
  \mbox{\Hypertarget{namespace_push_button_ac5342b66954a137c2d46ca410e354e86}\label{namespace_push_button_ac5342b66954a137c2d46ca410e354e86}} 
 \index{PushButton@{PushButton}!stop\_counter@{stop\_counter}}
@@ -133,7 +133,7 @@ Starts counter.
 
 Counter stops. 
 
-\begin{DoxyVerb}@param counter   The debounce counter
+\begin{DoxyVerb}Counter reached 0 and stopped running.
 \end{DoxyVerb}
  
 
@@ -146,7 +146,7 @@ Counter stops.
 
 
 
-Defined an event for the first push button\textquotesingle{}s debounced state. 
+Defined an event for Push Button1\textquotesingle{}s debounced state. 
 
 \mbox{\Hypertarget{namespace_push_button_a236d75f8bf79f2be863fab6928288143}\label{namespace_push_button_a236d75f8bf79f2be863fab6928288143}} 
 \index{PushButton@{PushButton}!button2PressedEvent@{button2PressedEvent}}
@@ -156,7 +156,7 @@ Defined an event for the first push button\textquotesingle{}s debounced state.
 
 
 
-Defined an event for the second push button\textquotesingle{}s debounced state. 
+Defined an event for Push Button2\textquotesingle{}s debounced state. 
 
 \mbox{\Hypertarget{namespace_push_button_ae9691eb0bfd729df9445eae4eb5fba84}\label{namespace_push_button_ae9691eb0bfd729df9445eae4eb5fba84}} 
 \index{PushButton@{PushButton}!CNT\_ELAPSED\_VAL@{CNT\_ELAPSED\_VAL}}
@@ -186,7 +186,7 @@ Counter was stopped and is not running.
 
 
 
-Initial values is assigned for the first push button\textquotesingle{}s debounce counter. 
+Initial value is assigned for Push Button1\textquotesingle{}s debounce counter. 
 
 \mbox{\Hypertarget{namespace_push_button_a74cbb224f63bd3dc0ce083c6d5b66bbb}\label{namespace_push_button_a74cbb224f63bd3dc0ce083c6d5b66bbb}} 
 \index{PushButton@{PushButton}!debounce\_counter2@{debounce\_counter2}}
@@ -196,7 +196,7 @@ Initial values is assigned for the first push button\textquotesingle{}s debounce
 
 
 
-Initial values is assigned for the second push button\textquotesingle{}s debounce counter. 
+Initial value is assigned for Push Button3\textquotesingle{}s debounce counter. 
 
 \mbox{\Hypertarget{namespace_push_button_ada75d95e86e71068f1cf432e18d2ba60}\label{namespace_push_button_ada75d95e86e71068f1cf432e18d2ba60}} 
 \index{PushButton@{PushButton}!PUSH\_BUT1@{PUSH\_BUT1}}
@@ -206,7 +206,7 @@ Initial values is assigned for the second push button\textquotesingle{}s debounc
 
 
 
-Push button 1 pin number. 
+Push Button 1 pin number. 
 
 \mbox{\Hypertarget{namespace_push_button_a8e7ec98d113d98ccf37eb7ec20b454f9}\label{namespace_push_button_a8e7ec98d113d98ccf37eb7ec20b454f9}} 
 \index{PushButton@{PushButton}!PUSH\_BUT2@{PUSH\_BUT2}}
@@ -216,7 +216,7 @@ Push button 1 pin number.
 
 
 
-Push button 2 pin number. 
+Push Button 2 pin number. 
 
 \mbox{\Hypertarget{namespace_push_button_ab110a500aa8e6f578f55fab03566d941}\label{namespace_push_button_ab110a500aa8e6f578f55fab03566d941}} 
 \index{PushButton@{PushButton}!T\_DEBOUNCE\_INIT\_VALUE@{T\_DEBOUNCE\_INIT\_VALUE}}

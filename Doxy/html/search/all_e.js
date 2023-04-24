@@ -6,5 +6,7 @@ var searchData=
   ['root_3',['root',['../namespace_menu_display.html#a812e2becc1dcf5ba476fa0434d67834c',1,'MenuDisplay']]],
   ['run_5fbackward_4',['run_backward',['../namespace_d_c___motor.html#a7cb9716af3079eefe9fb53a3aa5e543b',1,'DC_Motor']]],
   ['run_5fforward_5',['run_forward',['../namespace_d_c___motor.html#a740bc54507f303c0535b1a4c886e4018',1,'DC_Motor']]],
-  ['runselectedfunction_6',['RunSelectedFunction',['../namespace_menu_display.html#a2309dbff6282e23bff55bcea6412bbb0',1,'MenuDisplay']]]
+  ['runninghumiditysensor_6',['runningHumiditySensor',['../namespace_menu_display.html#a555d60a314a3f038e135430c57a51c7d',1,'MenuDisplay']]],
+  ['runningmoisturesensor_7',['runningMoistureSensor',['../namespace_menu_display.html#a263ff8327aa493eadb636daf030caf56',1,'MenuDisplay']]],
+  ['runselectedfunction_8',['RunSelectedFunction',['../namespace_menu_display.html#a2309dbff6282e23bff55bcea6412bbb0',1,'MenuDisplay']]]
 ];

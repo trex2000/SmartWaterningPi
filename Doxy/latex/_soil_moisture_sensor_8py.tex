@@ -8,8 +8,8 @@ namespace \mbox{\hyperlink{namespace_soil_moisture_sensor}{Soil\+Moisture\+Senso
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{namespace_soil_moisture_sensor_a3fb47f36c825031c279ab497e32fa336}{Soil\+Moisture\+Sensor.\+insert\+\_\+\+Soil\+Moisture\+Records}} (device\+\_\+name, date, raw\+\_\+value, converted\+\_\+percentage, classification)
-\begin{DoxyCompactList}\small\item\em Inserts data to Php\+My\+Admin tables. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespace_soil_moisture_sensor_a6090d6792c1ffe4d6dc78b592c0f9328}{Soil\+Moisture\+Sensor.\+insert\+\_\+\+Soil\+Moisture\+Records}} (device\+\_\+name, date, raw\+\_\+value, percentage, classification)
+\begin{DoxyCompactList}\small\item\em Inserts data to My\+SQL tables. \end{DoxyCompactList}\item 
 def \mbox{\hyperlink{namespace_soil_moisture_sensor_abaae26d8d040ed9a8c4c4495618802d0}{Soil\+Moisture\+Sensor.\+get\+\_\+\+Soil\+Moisture\+Record}} ()
 \begin{DoxyCompactList}\small\item\em Gets the last soil moisture record from SQL database. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
@@ -22,13 +22,13 @@ ADS \mbox{\hyperlink{namespace_soil_moisture_sensor_a2b9b80a189b8718be6634b9b6b1
 Analog\+In \mbox{\hyperlink{namespace_soil_moisture_sensor_a3c2d05cc2eda9ebfde20ed205653da25}{Soil\+Moisture\+Sensor.\+chan}} = Analog\+In(ads, ADS.\+P0)
 \begin{DoxyCompactList}\small\item\em Creating single-\/ended input on channel 0. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_a91578c0ab5e87797c062e531daeb544d}{Soil\+Moisture\+Sensor.\+HOSTNAME}} = \textquotesingle{}localhost\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em Setting hostname for Php\+My\+Admin connection. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Setting hostname for My\+SQL connection. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_a56c4d17b9eb7eaf4b7ecfdca906507ae}{Soil\+Moisture\+Sensor.\+USERNAME}} = \textquotesingle{}szidonia\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em Input Php\+My\+Admin username to connect. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Setting username for My\+SQL to connect. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_a183cad738d0378db3dadc0ad68bbe93e}{Soil\+Moisture\+Sensor.\+PASSWORD}} = \textquotesingle{}bomba98\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em Input Php\+My\+Admin password to connect. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Setting password for My\+SQL to connect. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_a63f1abfde6cd39ab21fd2e7d0bd8abd4}{Soil\+Moisture\+Sensor.\+DATABASE}} = \textquotesingle{}smartwatering\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em Setting the database on Php\+My\+Admin. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Setting the database on My\+SQL. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_ac05783934cb6a3a721d9dafd4dcc3e3b}{Soil\+Moisture\+Sensor.\+device\+\_\+name}} = \textquotesingle{}ADS 1X15\textquotesingle{}
 \begin{DoxyCompactList}\small\item\em The soil moisture sensor\textquotesingle{}s name. \end{DoxyCompactList}\item 
 datetime \mbox{\hyperlink{namespace_soil_moisture_sensor_a7cc14960ca46bb17ee7624e5567ec3b1}{Soil\+Moisture\+Sensor.\+now}} = datetime.\+datetime.\+now()
@@ -37,11 +37,9 @@ datetime \mbox{\hyperlink{namespace_soil_moisture_sensor_a824eba5e107a634e5f297c
 \begin{DoxyCompactList}\small\item\em The date format year\+:month\+:day hour\+:minute\+:second. \end{DoxyCompactList}\item 
 Analog\+In \mbox{\hyperlink{namespace_soil_moisture_sensor_ad9e5c304b6c6d4b443d132a36cb009d1}{Soil\+Moisture\+Sensor.\+raw\+\_\+value}} = chan.\+value
 \begin{DoxyCompactList}\small\item\em Raw value. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{namespace_soil_moisture_sensor_a30fef63455d8960eadd12336f79c9681}{Soil\+Moisture\+Sensor.\+percentage}} = int(100 $\ast$ 8000 / int(raw\+\_\+value))
-\begin{DoxyCompactList}\small\item\em The raw value converted to percentage. \end{DoxyCompactList}\item 
-format \mbox{\hyperlink{namespace_soil_moisture_sensor_a9bfb1827c3689fb5b0b28e842531bac6}{Soil\+Moisture\+Sensor.\+converted\+\_\+percentage}} = format(percentage, \textquotesingle{}d\textquotesingle{}) + \textquotesingle{}\%\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em Converted the integer into a string with \%. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespace_soil_moisture_sensor_a746ade661debc4e4203d2200735b99f5}{Soil\+Moisture\+Sensor.\+int\+\_\+percentage}} = int(100 $\ast$ 8000 / int(raw\+\_\+value))
+\begin{DoxyCompactList}\small\item\em The raw value converted to percentage in integer format. \end{DoxyCompactList}\item 
+format \mbox{\hyperlink{namespace_soil_moisture_sensor_a3cde33c97597ed61e2b8037e012e437e}{Soil\+Moisture\+Sensor.\+percentage}} = format(int\+\_\+percentage, \textquotesingle{}d\textquotesingle{}) + \textquotesingle{}\%\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em Converted the integer percentage into a string with \%. \end{DoxyCompactList}\item 
 str \mbox{\hyperlink{namespace_soil_moisture_sensor_a302dbda5694e19febb2f036364f513ae}{Soil\+Moisture\+Sensor.\+classification}} = \textquotesingle{}dry\textquotesingle{}
-\begin{DoxyCompactList}\small\item\em The values are classificated. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{namespace_soil_moisture_sensor_aa341aed0106da7ac3e8d3e479a6d935f}{Soil\+Moisture\+Sensor.\+current\+\_\+soil\+Moisture}} = 0
-\begin{DoxyCompactList}\small\item\em Current value of the soils moisture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The values classified. \end{DoxyCompactList}\end{DoxyCompactItemize}
