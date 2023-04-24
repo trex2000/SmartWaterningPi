@@ -8,12 +8,12 @@ from time import sleep
 #Global Constants
 ## Input one that controls the H-bridge.
 IN1 = 17
-## Input two that controls the H-bridge
+## Input two that controls the H-bridge.
 IN2 = 27
 ## Input for motor A that controls the PWM.
 ENA = 13
-## Setting the frequency.
-pwm = GPIO.PWM(ENA, 1000)
+
+
 ## Input the answer.
 answer = input('To run the motor forward press "r".\n To tun the motor backward press "b".')
 
@@ -23,8 +23,8 @@ def DCmotor_setup():
     """!Setup the library to use board numbering.
     
     Uses the GPIO pin numbers instead of 'standard' pin numbers.
-    Initializez the IN1 and IN2, which controls the spining direction, their initial value is set low.
-    Initializez the ENA output, which controls the speed.
+    Initializes the IN1 and IN2, which controls the spining direction, their initial value is set low.
+    Initializes the ENA output, which controls the speed.
     """
 
     GPIO.setwarnings(False)
@@ -32,8 +32,11 @@ def DCmotor_setup():
     GPIO.setup(IN1, GPIO.OUT, initial=GPIO.LOW)   
     GPIO.setup(IN2, GPIO.OUT, initial=GPIO.LOW) 
     GPIO.setup(ENA, GPIO.OUT) 
+    pwm = GPIO.PWM(ENA, 1000)
+    # The duty cycle is set to 50 which will make the motor run at 50% speed.
+    pwm.start(50)
 
-
+    
 def run_forward():
     """!The motor spins forward.
     """
@@ -51,8 +54,7 @@ def run_backward():
 
 
 DCmotor_setup()
-# The duty cycle is set to 50 which will make the motor run at 50% speed.
-pwm.start(50)
+
 
 while True:
     print(answer)
