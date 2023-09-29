@@ -2,9 +2,9 @@
 #include <TaskScheduler.h>
 
 /*The pin number of LED 1*/
-
+#define LED1 5
 /*The pin number of LED 2*/
-
+#define LED2 4
 
 
 // Scheduler
@@ -29,23 +29,24 @@ Task Task20ms ( PERIOD2* TASK_MILLISECOND, TASK_FOREVER , &Tasks20ms, &ts, true 
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(5, OUTPUT);
-  pinMode(4, OUTPUT);
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(5, HIGH);
+  digitalWrite(LED1, HIGH);
   delay(1000);
-  digitalWrite(4, HIGH);
+  digitalWrite(LED2, HIGH);
   delay(1000);
-  digitalWrite(5, LOW);
+  digitalWrite(LED1, LOW);
   delay(1000);
-  digitalWrite(4, LOW);
+  digitalWrite(LED2, LOW);
   delay(1000);
   
   /*Start the task scheduler*/
   ts.execute();
 }
+
 
