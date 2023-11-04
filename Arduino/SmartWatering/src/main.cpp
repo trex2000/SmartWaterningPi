@@ -16,6 +16,9 @@
 #define WIRE Wire // Set I2C bus to use: Wire
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define SENSOR_PIN A0 //define analog input
+#define wetSoil 277   // Define max value we consider soil 'wet'
+#define drySoil 380   // Define min value we consider soil 'dry'
 
 /*Values that are not constants*/
 int buttonState1 = HIGH; //The initial value of the push button 1 state (HIGH/ push-up resistor)
@@ -167,12 +170,32 @@ void setup() {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;);
   }
+
+  Serial.begin(9600);
+  Serial.println(F("Soil Moisture test!"));
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
+  int value = analogRead(SENSOR_PIN);
   
+  // Print the value to the serial monitor
+  Serial.print("Analog output: ");
+  Serial.println(value);
+  
+  // Determine status of our soil
+  if (value < wetSoil) {
+    Serial.println("Status: Soil is too wet");
+  } else if (value >= wetSoil && value < drySoil) {
+    Serial.println("Status: Soil moisture is perfect");
+  } else {
+    Serial.println("Status: Soil is too dry - time to water!");
+  }
+  Serial.println();
+  // Wait for 1 second before the next reading
+  delay(1000);
+
   /*Start the task scheduler*/
   ts.execute();
 }
