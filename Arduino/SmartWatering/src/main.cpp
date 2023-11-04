@@ -2,6 +2,9 @@
 #include <TaskScheduler.h>
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 
 /*Pin numbers*/
 #define LED_PIN_1 5 //The number of the led 1 pin
@@ -10,6 +13,9 @@
 #define BUTTON_PIN_2 6 //The number of the push button 2 pin 
 #define DHT_PIN 8 //The pin number of the humidity sensor 
 #define DHT_TYPE DHT22 // DHT22 (AM2302), AM2321
+#define WIRE Wire // Set I2C bus to use: Wire
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
 /*Values that are not constants*/
 int buttonState1 = HIGH; //The initial value of the push button 1 state (HIGH/ push-up resistor)
@@ -28,6 +34,9 @@ unsigned int debounce_counter2 = T_BOUNCE_INIT_VALUE;
 /*Initialize DHT sensor*/
 DHT dht(DHT_PIN, DHT_TYPE);
 
+/* Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)*/
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
 /*Function declarations*/
 bool counter_is_running(int counter);
 int counter_elapsed(int counter);
@@ -41,6 +50,7 @@ Scheduler ts;
 #define PERIOD1 10
 #define PERIOD2 20
 #define PERIOD3 30
+#define PERIOD4 5
 
 
 /*The Callback function for the 10 ms task*/
@@ -120,10 +130,23 @@ void DHT22_sensor(){
   Serial.print(temperature_F);
 }
 
+void OLED_SSD1306(){
+    delay(2000);
+  display.clearDisplay();
+
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 10);
+  // Display static text
+  display.println("Hello!");
+  display.display(); 
+}
+
 /*The 10 and the 20 ms task*/
 Task Task10ms ( PERIOD1 * TASK_MILLISECOND, TASK_FOREVER , &led_1_blink, &ts, true );
 Task Task20ms ( PERIOD2* TASK_MILLISECOND, TASK_FOREVER , &led_2_blink, &ts, true );
-Task Task30ms (PERIOD3* TASK_MILLISECOND, TASK_FOREVER, &DHT22_sensor, &ts, true );
+Task Task30ms ( PERIOD3* TASK_MILLISECOND, TASK_FOREVER, &DHT22_sensor, &ts, true );
+Task Task5ms ( PERIOD4* TASK_MILLISECOND, TASK_FOREVER, &OLED_SSD1306, &ts, true );
 
 
 void setup() {
@@ -138,6 +161,12 @@ void setup() {
   Serial.println(F("DHT22 test!"));
   dht.begin();
 
+  Serial.begin(115200);
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;);
+  }
 }
 
 void loop() {
