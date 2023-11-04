@@ -16,8 +16,7 @@ int buttonState1 = HIGH; //The initial value of the push button 1 state (HIGH/ p
 int buttonState2 = HIGH; //The initial value of the push button 2 state
 bool ledState1 = false;
 bool ledState2 = false;
-float hum;  //Stores humidity value
-float temp; //Stores temperature value
+
 
 unsigned int T_BOUNCE_INIT_VALUE = 50; // debounce counter's initial value
 unsigned int T_SLEEP = 0.01; // sleep time
@@ -41,6 +40,7 @@ Scheduler ts;
 /*Task periods*/
 #define PERIOD1 10
 #define PERIOD2 20
+#define PERIOD3 30
 
 
 /*The Callback function for the 10 ms task*/
@@ -91,9 +91,39 @@ void led_2_blink(){
   }
 }
 
+
+void DHT22_sensor(){
+  /*Reads the humidity and the temperature in C and F.*/
+
+  //Wait a few seconds beetwen measurements.
+  delay(2000);
+
+  //Reading temperature or humidity takes about 250 milliseconds!
+  //Sensor readings may also be up to 2 seconds 'old'
+  float humidity = dht.readHumidity();
+  //Read temperature as Celsius (default)
+  float temperature_C = dht.readTemperature();
+  //Read temperature as Fahrenheit (isFahrenheit = true)
+  float temperature_F = dht.readTemperature(true);
+  
+  //Check if any reaads failed and exit early (to try again)
+  if (isnan(humidity) || isnan(temperature_C) || isnan(temperature_F)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
+
+  Serial.print(F("Humidity: "));
+  Serial.print(humidity);
+  Serial.print(F(" %, Temperature: "));
+  Serial.print(temperature_C);
+  Serial.print(F(" °C"));
+  Serial.print(temperature_F);
+}
+
 /*The 10 and the 20 ms task*/
 Task Task10ms ( PERIOD1 * TASK_MILLISECOND, TASK_FOREVER , &led_1_blink, &ts, true );
 Task Task20ms ( PERIOD2* TASK_MILLISECOND, TASK_FOREVER , &led_2_blink, &ts, true );
+Task Task30ms (PERIOD3* TASK_MILLISECOND, TASK_FOREVER, &DHT22_sensor, &ts, true );
 
 
 void setup() {
@@ -112,39 +142,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //Wait a few seconds beetwen measurements.
-  delay(2000);
 
-  //Reading temperature or humidity takes about 250 milliseconds!
-  //Sensor readings may also be up to 2 seconds 'old'
-  float h = dht.readHumidity();
-  //Read temperature as Celsius (default)
-  float t = dht.readTemperature();
-  //Read temperature as Fahrenheit (isFahrenheit = true)
-  float f = dht.readTemperature(true);
-  
-  //Check if any reaads failed and exit early (to try again)
-  if (isnan(h) || isnan(t) || isnan(f)) {
-    Serial.println(F("Failed to read from DHT sensor!"));
-    return;
-  }
-
-  //Compute heat index in Fahrenheit (the default)
-  float hif = dht.computeHeatIndex(f, h);
-  //Compute heat index in Celsius (isFahrenheit = false)
-  float hic = dht.computeHeatIndex(t, h, false);
-   
-  Serial.print(F("Humidity: "));
-  Serial.print(h);
-  Serial.print(F(" %, Temperature: "));
-  Serial.print(t);
-  Serial.print(F("C "));
-  Serial.print(f);
-  Serial.print(F("F Heat index: "));
-  Serial.print(hic);
-  Serial.print(F("C "));
-  Serial. print(hif);
-  Serial.print(F("F "));
   
   /*Start the task scheduler*/
   ts.execute();
