@@ -17,8 +17,9 @@
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 #define SENSOR_PIN A0 //define analog input
-#define wetSoil 277   // Define max value we consider soil 'wet'
-#define drySoil 380   // Define min value we consider soil 'dry'
+#define wetSoil 300   // Define max value we consider soil 'wet'
+#define drySoil 510   // Define min value we consider soil 'dry' 
+//513 in the air, 344 in the soil, 207 in the water  
 
 /*Values that are not constants*/
 int buttonState1 = HIGH; //The initial value of the push button 1 state (HIGH/ push-up resistor)
@@ -54,6 +55,7 @@ Scheduler ts;
 #define PERIOD2 20
 #define PERIOD3 30
 #define PERIOD4 5
+#define PERIOD5 40
 
 
 /*The Callback function for the 10 ms task*/
@@ -145,11 +147,40 @@ void OLED_SSD1306(){
   display.display(); 
 }
 
+void soil_moisture(){
+  
+  int value = analogRead(SENSOR_PIN);
+  
+  // Print the value to the serial monitor
+  Serial.print("Analog output: ");
+  Serial.println(value);
+
+  // Print the percentage of wetness 
+  int percentage = (100 * 207 / (value));
+  Serial.print("Percentage output: ");
+  Serial.println(percentage);
+
+
+  // Determine status of our soil
+  if (value < wetSoil) {
+    Serial.println("Status: Soil is too wet");
+  } else if (value >= wetSoil && value < drySoil) {
+    Serial.println("Status: Soil moisture is perfect");
+  } else {
+    Serial.println("Status: Soil is too dry - time to water!");
+  }
+  Serial.println();
+  // Wait for 1 second before the next reading
+  delay(1000); 
+
+}
+
 /*The 10 and the 20 ms task*/
 Task Task10ms ( PERIOD1 * TASK_MILLISECOND, TASK_FOREVER , &led_1_blink, &ts, true );
 Task Task20ms ( PERIOD2* TASK_MILLISECOND, TASK_FOREVER , &led_2_blink, &ts, true );
 Task Task30ms ( PERIOD3* TASK_MILLISECOND, TASK_FOREVER, &DHT22_sensor, &ts, true );
 Task Task5ms ( PERIOD4* TASK_MILLISECOND, TASK_FOREVER, &OLED_SSD1306, &ts, true );
+Task Task40ms (PERIOD5* TASK_MILLISECOND, TASK_FOREVER, &soil_moisture, &ts, true);
 
 
 void setup() {
@@ -178,23 +209,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  int value = analogRead(SENSOR_PIN);
-  
-  // Print the value to the serial monitor
-  Serial.print("Analog output: ");
-  Serial.println(value);
-  
-  // Determine status of our soil
-  if (value < wetSoil) {
-    Serial.println("Status: Soil is too wet");
-  } else if (value >= wetSoil && value < drySoil) {
-    Serial.println("Status: Soil moisture is perfect");
-  } else {
-    Serial.println("Status: Soil is too dry - time to water!");
-  }
-  Serial.println();
-  // Wait for 1 second before the next reading
-  delay(1000);
 
   /*Start the task scheduler*/
   ts.execute();
